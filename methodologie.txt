@@ -15,6 +15,9 @@ méthode: pile
 |
 pile: 0, index: 0
 
+Pour l'affichage de la grille de jeu, elle se fera de la fin du sauvegarde jusqu'au début de la sauvegarde
 
 Source:
 Gitlab LACL ->push Github
+
+Pour Frédéric: commit avec clé GPG
