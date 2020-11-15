@@ -1,0 +1,20 @@
+Méthodologie Puissance 4:
+
+en argument: le fichier -> Si oui: charge la partie
+			Sinon: exception
+
+rien: crée un fichier
+
+
+méthode: pile
+
+0  1  2345678 9-10-11-12-13...
+/\/\	     /\
+|  |	      | pile: 0, index: 1
+|  pile: 1, index: 0
+|
+pile: 0, index: 0
+
+
+Source:
+Gitlab LACL ->push Github
