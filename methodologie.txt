@@ -21,3 +21,6 @@ Source:
 Gitlab LACL ->push Github
 
 Pour Frédéric: commit avec clé GPG
+
+Documentation:
+https://www.w3schools.com/java/java_files_read.asp
