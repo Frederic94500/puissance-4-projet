@@ -6,7 +6,9 @@ en argument: le fichier -> Si oui: charge la partie
 rien: crée un fichier
 
 
-méthode: pile
+méthode: Tableau à 2 dimensions ou ArrayList (pas encore choisi)
+
+Enregistrement: mode pile
 
 0  1  2345678 9-10-11-12-13...
 /\/\	     /\
@@ -14,6 +16,23 @@ méthode: pile
 |  pile: 1, index: 0
 |
 pile: 0, index: 0
+
+Enregistrement: colonne par colonne
+
+0 0 0 ...
+1 1 1 
+2 2 2 
+3 3 3 
+4 4 4 
+5 5 5 
+
+Utilisation de JSON: Autorisé, je pense que l'enregistrement se fera pile par pile (ou non)
+
+Pile -> plus compliqué
+Tableau à 2 dimensions -> plus simple
+ArrayList -> Encore plus simple
+
+Modèle de sauvegarde: libre, JSON justifié
 
 Pour l'affichage de la grille de jeu, elle se fera de la fin du sauvegarde jusqu'au début de la sauvegarde
 
@@ -24,3 +43,7 @@ Pour Frédéric: commit avec clé GPG
 
 Documentation:
 https://www.w3schools.com/java/java_files_read.asp
+
+Screenshot du cours:
+https://s3.frederic94500.net/2020/11/36ibC.png
+https://s3.frederic94500.net/2020/11/6q4PP.png
