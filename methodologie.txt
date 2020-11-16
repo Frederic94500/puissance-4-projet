@@ -43,6 +43,8 @@ Pour Frédéric: commit avec clé GPG
 
 Documentation:
 https://www.w3schools.com/java/java_files_read.asp
+https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
+
 
 Screenshot du cours:
 https://s3.frederic94500.net/2020/11/36ibC.png
