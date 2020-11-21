@@ -44,7 +44,18 @@ Pour Frédéric: commit avec clé GPG
 Documentation:
 https://www.w3schools.com/java/java_files_read.asp
 https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
+https://github.com/google/gson
+https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/module-summary.html
+https://docs.oracle.com/javase/7/docs/api/java/io/FileReader.html
+https://mkyong.com/java/how-to-parse-json-with-gson/
+https://howtodoinjava.com/gson/gson-jsonparser/
+https://stackoverflow.com/questions/11443928/how-to-modify-values-of-jsonobject-jsonarray-directly
+https://attacomsian.com/blog/gson-write-json-file
 
+https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+
+https://stackoverflow.com/questions/29965764/how-to-parse-json-file-with-gson
+https://www.geeksforgeeks.org/arraylist-of-arraylist-in-java/
 
 Screenshot du cours:
 https://s3.frederic94500.net/2020/11/36ibC.png

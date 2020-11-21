@@ -1,10 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import com.google.gson.JsonElement;
 
 /**
@@ -16,16 +18,10 @@ import com.google.gson.JsonElement;
 public class Main{
     public static void main(String[] args) {
         try{
-            File fichier = new File(args[0]);
-            Scanner lecture_fichier = new Scanner(fichier);
-            while(lecture_fichier.hasNextLine()){
-                String data = lecture_fichier.nextLine();
-            }
-            lecture_fichier.close();
+            Gson gson = new Gson();
+            JsonReader reader = new JsonReader(new FileReader(args[0]));
+            Partie data = gson.fromJson(reader, Partie.class);
 
-            JsonElement parser = JsonElement.parseString()
-
-            JsonObject json = new JsonParser().parse("{\"name\": \"Jason\", \"age\": 29}").getAsJsonObject();
         } catch (FileNotFoundException e){
             System.out.println("Fichier inexistant");
             System.exit(0);
