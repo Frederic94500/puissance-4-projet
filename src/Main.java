@@ -1,13 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.JsonElement;
+import java.io.IOException;
 
 /**
  * Classe principale du puissance 4
@@ -17,19 +8,32 @@ import com.google.gson.JsonElement;
 
 public class Main{
     public static void main(String[] args) {
-        /*try{
-            Gson gson = new Gson();
-            JsonReader reader = new JsonReader(new FileReader(args[0]));
-            Partie data = gson.fromJson(reader, Partie.class);
-
-        } catch (FileNotFoundException e){
-            System.out.println("Fichier inexistant");
+        try{
+            System.out.println("Lecture de la partie...");
+            Partie partie = Fichier.lecture(args[0]);
+        } catch (IOException e){
+            e.printStackTrace();
+            System.out.println("Fichier inexistant, création de la partie");
+            Partie partie = new Partie();
+            try {
+                Fichier.enregistrement(partie);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                System.exit(0);
+            }
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Création de la partie");
+            Partie partie = new Partie();
+            try {
+                Fichier.enregistrement(partie);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                System.exit(0);
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur inconnu!");
             System.exit(0);
-        }*/
+        }
 
-        Grille grille = new Grille(10, 10);
-        System.out.println(grille);
-
-        Partie partie = new Partie();
     }
 }

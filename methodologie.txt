@@ -60,6 +60,7 @@ https://stackoverflow.com/questions/7833689/java-string-new-line
 https://www.w3schools.com/java/java_arraylist.asp
 https://www.w3schools.com/java/java_enums.asp
 https://www.w3schools.com/java/java_switch.asp
+https://www.javatpoint.com/java-get-current-date
 
 Screenshot du cours:
 https://s3.frederic94500.net/2020/11/36ibC.png
