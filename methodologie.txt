@@ -56,6 +56,10 @@ https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-
 
 https://stackoverflow.com/questions/29965764/how-to-parse-json-file-with-gson
 https://www.geeksforgeeks.org/arraylist-of-arraylist-in-java/
+https://stackoverflow.com/questions/7833689/java-string-new-line
+https://www.w3schools.com/java/java_arraylist.asp
+https://www.w3schools.com/java/java_enums.asp
+https://www.w3schools.com/java/java_switch.asp
 
 Screenshot du cours:
 https://s3.frederic94500.net/2020/11/36ibC.png

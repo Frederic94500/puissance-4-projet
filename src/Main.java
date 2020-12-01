@@ -17,7 +17,7 @@ import com.google.gson.JsonElement;
 
 public class Main{
     public static void main(String[] args) {
-        try{
+        /*try{
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new FileReader(args[0]));
             Partie data = gson.fromJson(reader, Partie.class);
@@ -25,6 +25,11 @@ public class Main{
         } catch (FileNotFoundException e){
             System.out.println("Fichier inexistant");
             System.exit(0);
-        }
+        }*/
+
+        Grille grille = new Grille(10, 10);
+        System.out.println(grille);
+
+        Partie partie = new Partie();
     }
 }

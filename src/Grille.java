@@ -12,13 +12,13 @@ public class Grille {
     private int hauteur;
     
     public Grille(int largeur, int hauteur) {
-        this.grille = new ArrayList<ArrayList<CaseGrille>>(largeur);
+        this.grille = new ArrayList<ArrayList<CaseGrille>>(/*largeur*/);
         this.largeur = largeur;
         this.hauteur = hauteur;
         for(int i = 0; i != largeur; i++ ) {
-            grille.set(i, new ArrayList<CaseGrille>(hauteur));
+            grille.add(i, new ArrayList<CaseGrille>(/*hauteur*/));
             for(int j = 0; j < hauteur; j++){
-                grille.get(i).set(j, new CaseGrille());
+                grille.get(i).add(j, new CaseGrille());
             }
         }
     }
@@ -26,15 +26,17 @@ public class Grille {
     @Override
     public String toString(){
         String s = "";
+        for(int i = 1; i < largeur; i++) s += i + " ";
+        s += largeur + "\n";
         for(int i = largeur-1; i >= 0; i--){
             for(int j = hauteur-1; j >= 0; j--){
                 switch(grille.get(j).get(i).getPion()){
                     case JAUNE:
-                        s += "X";
+                        s += "X ";
                     case ROUGE:
-                        s += "O";
+                        s += "O ";
                     case VIDE:
-                        s += "_";
+                        s += "_ ";
                 }
             }
             s += "\n";
