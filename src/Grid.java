@@ -9,16 +9,16 @@ import java.util.ArrayList;
 public class Grid {
     private int width;
     private int height;
-    private ArrayList<ArrayList<BoxGrid>> grid; 
+    private ArrayList<ArrayList<Coin>> grid; 
     
     public Grid(int width, int height) {
-        this.grid = new ArrayList<ArrayList<BoxGrid>>();
+        this.grid = new ArrayList<ArrayList<Coin>>();
         this.width = width;
         this.height = height;
         for(int i = 0; i != width; i++ ) {
-            grid.add(i, new ArrayList<BoxGrid>());
+            grid.add(i, new ArrayList<Coin>());
             for(int j = 0; j < height; j++){
-                grid.get(i).add(j, new BoxGrid());
+                grid.get(i).add(j, new Coin());
             }
         }
     }
@@ -30,7 +30,7 @@ public class Grid {
         s += width + "\n";
         for(int i = width-1; i >= 0; i--){
             for(int j = height-1; j >= 0; j--){
-                switch(grid.get(j).get(i).getDisk()){
+                switch(grid.get(i).get(j).getDisk()){
                     case YELLOW:
                         s += "X ";
                     case RED:
@@ -42,5 +42,9 @@ public class Grid {
             s += "\n";
         }
         return s;
+    }
+
+    public ArrayList<ArrayList<Coin>> getGrid() {
+        return grid;
     }
 }

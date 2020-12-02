@@ -40,7 +40,12 @@ public class Main{
             System.exit(0);
         }
         finally{
-            if(game != null) System.out.println(game.getGrid());
+            System.out.println("Affichage de la grille");
+            System.out.println(game.getGrid());
         }
+
+        while(true){
+            game.turn();
+        }  
     }
 }

@@ -11,15 +11,15 @@
   *     -VOID = _
   */
 
-public class BoxGrid {
+public class Coin {
     enum Disk {YELLOW, RED, VOID};
     private Disk disk;
 
-    public BoxGrid() {
+    public Coin() {
         this.disk = Disk.VOID;
     }
 
-    public void setBoxGrid(Disk disk) {
+    public void setDisk(Disk disk) {
         this.disk = disk;
     }
 
