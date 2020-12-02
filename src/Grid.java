@@ -7,16 +7,16 @@ import java.util.ArrayList;
  */
 
 public class Grid {
-    private ArrayList<ArrayList<BoxGrid>> grid; 
     private int width;
     private int height;
+    private ArrayList<ArrayList<BoxGrid>> grid; 
     
     public Grid(int width, int height) {
-        this.grid = new ArrayList<ArrayList<BoxGrid>>(/*width*/);
+        this.grid = new ArrayList<ArrayList<BoxGrid>>();
         this.width = width;
         this.height = height;
         for(int i = 0; i != width; i++ ) {
-            grid.add(i, new ArrayList<BoxGrid>(/*height*/));
+            grid.add(i, new ArrayList<BoxGrid>());
             for(int j = 0; j < height; j++){
                 grid.get(i).add(j, new BoxGrid());
             }

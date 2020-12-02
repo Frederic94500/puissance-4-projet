@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class File {
-    public static void enregistrement(Game game) throws IOException {
+    public static void save(Game game) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -21,12 +21,12 @@ public class File {
         writer.close();
     }
 
-    public static Game lecture(String file) throws IOException{
+    public static Game read(String file) throws IOException{
         Gson gson = new Gson();
 
         Reader reader = Files.newBufferedReader(Paths.get(file));
         Game game = gson.fromJson(reader, Game.class);
-        
+
         reader.close();
         return game;
     }

@@ -26,7 +26,7 @@ public class Game {
         System.out.println("Taille de la grid, Hauteur?");
         int height = scanner.nextInt();
         Grid grid = new Grid(width, height);
-        System.out.println("grid créée");
+        System.out.println("Grille créée");
 
         int nbDiskGrid = width * height;
 
@@ -42,5 +42,27 @@ public class Game {
 
         scanner.close();
         return game;
+    }
+
+    public Grid getGrid() {
+        return grid;
+    }
+
+    public void playing(){
+        Scanner scanner = new Scanner(System.in);
+        if(turn){
+            System.out.println("C'est au tour de " + player1.getName() + " de jouer");
+        } else{
+            System.out.println("C'est au tour de " + player2.getName() + " de jouer");
+        }
+        scanner.close();
+    }
+
+    public void place(){
+        
+    }
+
+    public void verify(){
+
     }
 }

@@ -8,34 +8,39 @@ import java.io.IOException;
 
 public class Main{
     public static void main(String[] args) {
-        try{
+        Game game = null;
+        try{ //Cas où le fichier existe
             System.out.println("Lecture de la partie...");
-            Game game = File.lecture(args[0]);
+            game = File.read(args[0]);
             System.out.println("Lecture réussi!");
-
-        } catch (IOException e){ //Cas où le fichier est inexistant
+        }
+        catch (IOException e){ //Cas où le fichier est inexistant
             System.out.println("Fichier inexistant, création de la partie");
-            Game game = Game.createGame();
+            game = Game.createGame();
             try {
-                File.enregistrement(game);
+                File.save(game);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 System.exit(0);
             }
-
-        } catch (ArrayIndexOutOfBoundsException e){ //Cas où on démarre le programme sans argument
+        }
+        catch (ArrayIndexOutOfBoundsException e){ //Cas où on démarre le programme sans argument
             System.out.println("Pas d'argument... Création de la partie");
-            Game game = Game.createGame();
+            game = Game.createGame();
             try {
-                File.enregistrement(game);
+                File.save(game);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 System.exit(0);
             }
-            
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Erreur inconnu!");
+            e.printStackTrace();
             System.exit(0);
+        }
+        finally{
+            if(game != null) System.out.println(game.getGrid());
         }
     }
 }

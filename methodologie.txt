@@ -1,21 +1,10 @@
 Méthodologie Puissance 4:
 
 en argument: le fichier -> Si oui: charge la partie
-			Sinon: exception
+			Sinon: création de la partie
+			Sans argument: crée la partie
 
-rien: crée un fichier
-
-
-méthode: Tableau à 2 dimensions ou ArrayList (pas encore choisi)
-
-Enregistrement: mode pile
-
-0  1  2345678 9-10-11-12-13...
-/\/\	     /\
-|  |	      | pile: 0, index: 1
-|  pile: 1, index: 0
-|
-pile: 0, index: 0
+méthode: ArrayList de ArrayList de BoxGrid
 
 Enregistrement: colonne par colonne
 
@@ -26,7 +15,7 @@ Enregistrement: colonne par colonne
 4 4 4 
 5 5 5 
 
-Utilisation de JSON: Autorisé, je pense que l'enregistrement se fera pile par pile (ou non)
+Enregistrement dans le fichier: géré par gson via la méthode toJson() -> enregistrement dans un fichier .json
 
 Pile -> plus compliqué
 Tableau à 2 dimensions -> plus simple
@@ -37,7 +26,7 @@ Modèle de sauvegarde: libre, JSON justifié
 Pour l'affichage de la grille de jeu, elle se fera de la fin du sauvegarde jusqu'au début de la sauvegarde
 
 Source:
-Gitlab LACL ->push Github
+Gitlab LACL -> push Github
 
 Pour Frédéric: commit avec clé GPG
 
