@@ -23,8 +23,10 @@ public class File {
 
     public static Game lecture(String file) throws IOException{
         Gson gson = new Gson();
+
         Reader reader = Files.newBufferedReader(Paths.get(file));
         Game game = gson.fromJson(reader, Game.class);
+        
         reader.close();
         return game;
     }

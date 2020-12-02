@@ -14,6 +14,9 @@ public class Game {
     }
 
     public Game() {
+    }
+
+    public static Game createGame(){
         System.out.println("Création de la partie...");
 
         Scanner scanner = new Scanner(System.in);
@@ -22,20 +25,22 @@ public class Game {
         int width = scanner.nextInt();
         System.out.println("Taille de la grid, Hauteur?");
         int height = scanner.nextInt();
-        this.grid = new Grid(width, height);
+        Grid grid = new Grid(width, height);
         System.out.println("grid créée");
 
         int nbDiskGrid = width * height;
 
         System.out.println("Création des joueurs");
         System.out.println("Nom du joueur 1?");
-        this.player1 = new Player(true, scanner.next(), nbDiskGrid/2);
+        Player player1 = new Player(true, scanner.next(), nbDiskGrid/2);
         System.out.println("Nom du joueur 2?");
-        this.player2 = new Player(false, scanner.next(), nbDiskGrid/2);
+        Player player2 = new Player(false, scanner.next(), nbDiskGrid/2);
         System.out.println("Joueurs créés");
 
+        Game game = new Game(player1, player2, grid);
         System.out.println("Partie créée!");
 
         scanner.close();
+        return game;
     }
 }

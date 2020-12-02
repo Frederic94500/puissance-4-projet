@@ -11,29 +11,31 @@ public class Main{
         try{
             System.out.println("Lecture de la partie...");
             Game game = File.lecture(args[0]);
-        } catch (IOException e){
-            e.printStackTrace();
+            System.out.println("Lecture réussi!");
+
+        } catch (IOException e){ //Cas où le fichier est inexistant
             System.out.println("Fichier inexistant, création de la partie");
-            Game game = new Game();
+            Game game = Game.createGame();
             try {
                 File.enregistrement(game);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 System.exit(0);
             }
-        } catch (IndexOutOfBoundsException e){
-            System.out.println("Création de la partie");
-            Game game = new Game();
+
+        } catch (ArrayIndexOutOfBoundsException e){ //Cas où on démarre le programme sans argument
+            System.out.println("Pas d'argument... Création de la partie");
+            Game game = Game.createGame();
             try {
                 File.enregistrement(game);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 System.exit(0);
             }
+            
         } catch (Exception e) {
             System.out.println("Erreur inconnu!");
             System.exit(0);
         }
-
     }
 }
