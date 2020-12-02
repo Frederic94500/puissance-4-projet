@@ -9,23 +9,23 @@ import java.time.format.DateTimeFormatter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class Fichier {
-    public static void enregistrement(Partie partie) throws IOException {
+public class File {
+    public static void enregistrement(Game game) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         Writer writer = Files.newBufferedWriter(Paths.get("partie-" + date.format(LocalDateTime.now()) + ".json"));
 
-        gson.toJson(partie, writer);
+        gson.toJson(game, writer);
 
         writer.close();
     }
 
-    public static Partie lecture(String fichier) throws IOException{
+    public static Game lecture(String file) throws IOException{
         Gson gson = new Gson();
-        Reader reader = Files.newBufferedReader(Paths.get(fichier));
-        Partie partie = gson.fromJson(reader, Partie.class);
+        Reader reader = Files.newBufferedReader(Paths.get(file));
+        Game game = gson.fromJson(reader, Game.class);
         reader.close();
-        return partie;
+        return game;
     }
 }

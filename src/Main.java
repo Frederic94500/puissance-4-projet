@@ -10,22 +10,22 @@ public class Main{
     public static void main(String[] args) {
         try{
             System.out.println("Lecture de la partie...");
-            Partie partie = Fichier.lecture(args[0]);
+            Game game = File.lecture(args[0]);
         } catch (IOException e){
             e.printStackTrace();
             System.out.println("Fichier inexistant, création de la partie");
-            Partie partie = new Partie();
+            Game game = new Game();
             try {
-                Fichier.enregistrement(partie);
+                File.enregistrement(game);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 System.exit(0);
             }
         } catch (IndexOutOfBoundsException e){
             System.out.println("Création de la partie");
-            Partie partie = new Partie();
+            Game game = new Game();
             try {
-                Fichier.enregistrement(partie);
+                File.enregistrement(game);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 System.exit(0);
