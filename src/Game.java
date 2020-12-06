@@ -109,6 +109,50 @@ public class Game {
     }
 
     public void verify(){
-
+        for(int i = 0; i < grid.getGrid().size(); i++){ //Vérification verticale
+            int red = 0;
+            int yellow = 0;
+            for(int j = 0; j < grid.getGrid().get(i).size(); j++){
+                if(grid.getGrid().get(i).get(j).getDisk() == Coin.Disk.RED){
+                    red++;
+                    yellow = 0;
+                }
+                if(grid.getGrid().get(i).get(j).getDisk() == Coin.Disk.YELLOW){
+                    red = 0;
+                    yellow++;
+                }
+                if(red == 4){
+                    System.out.println("Rouge gagne!");
+                }
+                if(yellow == 4){
+                    System.out.println("Jaune gagne!");
+                }
+            }
+        }
+        for(int i = 0; i < grid.getGrid().get(i).size(); i++){ //Vérfication hozizontale
+            int red = 0;
+            int yellow = 0;
+            for(int j = 0; j < grid.getGrid().size(); j++){
+                if(grid.getGrid().get(j).get(i).getDisk() == Coin.Disk.RED){
+                    red++;
+                    yellow = 0;
+                }
+                if(grid.getGrid().get(j).get(i).getDisk() == Coin.Disk.YELLOW){
+                    red = 0;
+                    yellow++;
+                }
+                if(red == 4){
+                    System.out.println("Rouge gagne!");
+                }
+                if(yellow == 4){
+                    System.out.println("Jaune gagne!");
+                }
+            }
+        }
+        for (int i = 0; i < grid.getGrid().get(i).size(); i++) {
+            for (int j = 0; j < 4; j++) {
+                
+            }
+        }
     }
 }
