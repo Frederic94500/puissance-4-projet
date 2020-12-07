@@ -109,27 +109,43 @@ public class Game {
     }
 
     public void verify(){
-        for(int i = 0; i < grid.getGrid().size(); i++){ //Vérification verticale
+        verify_vertical();
+        verify_horizontal();
+        verify_diag_acc();
+        verify_diag_des();
+    }
+    private int verify_vertical(){
+        int winner = 0;
+        for(ArrayList<Coin> vert : grid.getGrid()){ //Vérification verticale
             int red = 0;
             int yellow = 0;
-            for(int j = 0; j < grid.getGrid().get(i).size(); j++){
-                if(grid.getGrid().get(i).get(j).getDisk() == Coin.Disk.RED){
-                    red++;
-                    yellow = 0;
-                }
-                if(grid.getGrid().get(i).get(j).getDisk() == Coin.Disk.YELLOW){
-                    red = 0;
-                    yellow++;
-                }
-                if(red == 4){
-                    System.out.println("Rouge gagne!");
+            for(Coin coin : vert){
+                switch (coin.getDisk()) {
+                    case RED:
+                        red++;
+                        yellow = 0;
+                        break;
+                    case YELLOW:
+                        red = 0;
+                        yellow++;
+                        break;
+                    default: break;
                 }
                 if(yellow == 4){
                     System.out.println("Jaune gagne!");
+                    winner = 1;
                 }
+                if(red == 4){
+                    System.out.println("Rouge gagne!");
+                    winner = 2;
+                } 
             }
         }
-        for(int i = 0; i < grid.getGrid().get(i).size(); i++){ //Vérfication hozizontale
+        return winner;
+    }
+    private int verify_horizontal(){
+        int winner = 0;
+        for(int i = 0; i < grid.getGrid().get(i).size(); i++){ //Vérification horizontale
             int red = 0;
             int yellow = 0;
             for(int j = 0; j < grid.getGrid().size(); j++){
@@ -141,18 +157,26 @@ public class Game {
                     red = 0;
                     yellow++;
                 }
-                if(red == 4){
-                    System.out.println("Rouge gagne!");
-                }
                 if(yellow == 4){
                     System.out.println("Jaune gagne!");
+                    winner = 1;
+                }
+                if(red == 4){
+                    System.out.println("Rouge gagne!");
+                    winner =2;
                 }
             }
         }
-        for (int i = 0; i < grid.getGrid().get(i).size(); i++) {
-            for (int j = 0; j < 4; j++) {
+        return winner;
+    }
+    private int verify_diag_acc(){ //Vérification diagonale croissante
+        for (int i = 0; i < grid.getGrid().get(i).size()-4; i++) { 
+            for (int j = 0; j < grid.getGrid().size()-4; j++) {
                 
             }
         }
+    }
+    private int verify_diag_des(){
+
     }
 }
