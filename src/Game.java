@@ -74,7 +74,7 @@ public class Game {
             try{
                 int index = scanner.nextInt();
                 scanner.nextLine();
-                if(!(is_full(index-1))){
+                if(!(isFull(index-1))){
                     place(index-1, disk);
                     break;
                 } else {
@@ -86,24 +86,21 @@ public class Game {
         }
     }
 
-    public boolean is_full(int index){
+    public boolean isFull(int index){
         index--;
         boolean is_full = true;;
-        ArrayList<Coin> column = grid.getGrid().get(index);
-        for(int i = 0; i < column.size(); i++){
-            if(column.get(i).getDisk() == Coin.Disk.VOID){
-                is_full = false;
-                break;
+        for (Coin coin : grid.getGrid().get(index)) {
+            if(coin.getDisk() == Coin.Disk.VOID){
+                return false;
             }
         }
         return is_full;
     }
 
     public void place(int index, Coin disk) {
-        ArrayList<Coin> column = grid.getGrid().get(index);
-        for (int i = 0; i < column.size(); i++) {
-            if (column.get(i).getDisk() == Coin.Disk.VOID) {
-                column.set(i, disk);
+        for (Coin coin : grid.getGrid().get(index)){
+            if(coin.getDisk() == Coin.Disk.VOID){
+                coin.setDisk(disk.getDisk());
             }
         }
     }
