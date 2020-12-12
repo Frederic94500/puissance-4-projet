@@ -28,9 +28,9 @@ public class Grid {
         String s = "";
         for(int i = 1; i < width; i++) s += i + " ";
         s += width + "\n";
-        for (ArrayList<Coin> vertical : grid) {
-            for (Coin coin : vertical) {
-                switch(coin.getDisk()){
+        for(int i = width-1; i >= 0; i--){
+            for(int j = height-1; j >= 0; j--){
+                switch(grid.get(i).get(j).getDisk()){
                     case YELLOW:
                         s += "X ";
                     case RED:
