@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 //import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -67,18 +68,17 @@ public class Game {
         }
     }
 
-    public void playing(Scanner scanner ,Coin disk){
-        while(scanner.hasNext()){
-            if(scanner.hasNextInt()){
+    public void playing(Scanner scanner, Coin disk){
+        while(true){
+            try{
                 int index = scanner.nextInt();
                 if(!(isFull(index-1))){
                     place(index-1, disk);
-                    scanner.close();
                     break;
                 } else {
                     System.out.println("La colonne " + index + " est pleine, veuillez rechoisir votre colonne");
                 }
-            } else {
+            } catch (InputMismatchException e) { //bug%
                 System.out.println("Veuillez mettre un nombre correct");
             }
         }

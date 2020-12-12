@@ -54,6 +54,12 @@ public class Main{
         for(int i = 0; i <= 5; i++){
             game.turn(scanner);
             System.out.println(game.getGrid());
+            try {
+                File.save(game);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
         }
 
         scanner.close();  
