@@ -72,10 +72,9 @@ public class Game {
 
     public void playing(Coin disk){
         Scanner scanner = new Scanner(System.in);
-        while(true){
+        while(scanner.hasNextInt()){
             try{
                 int index = scanner.nextInt();
-                //scanner.nextLine();
                 if(!(isFull(index-1))){
                     place(index-1, disk);
                     break;
@@ -84,10 +83,9 @@ public class Game {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Veuillez mettre un nombre correct");
-            } finally {
-                scanner.close();
             }
         }
+        scanner.close();
     }
 
     public boolean isFull(int index){
@@ -105,6 +103,7 @@ public class Game {
         for (Coin coin : grid.getGrid().get(index)){
             if(coin.getDisk() == Coin.Disk.VOID){
                 coin.setDisk(disk.getDisk());
+                break;
             }
         }
     }

@@ -28,15 +28,19 @@ public class Grid {
         String s = "";
         for(int i = 1; i < width; i++) s += i + " ";
         s += width + "\n";
-        for(int i = width-1; i >= 0; i--){
-            for(int j = height-1; j >= 0; j--){
-                switch(grid.get(i).get(j).getDisk()){
+
+        for(int i = height-1; i >= 0; i--){
+            for(int j = width-1; j >= 0; j--){
+                switch(grid.get(j).get(i).getDisk()){
                     case YELLOW:
                         s += "X ";
+                        break;
                     case RED:
                         s += "O ";
+                        break;
                     case VOID:
                         s += "_ ";
+                        break;
                 }
             }
             s += "\n";
