@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -36,9 +37,11 @@ public class Game {
         Coin coin = new Coin();
         coin.setDisk(Coin.Disk.YELLOW);
         Player player1 = new Player(coin, scanner.next(), nbDiskGrid/2);
+
         System.out.println("Nom du joueur 2?");
-        coin.setDisk(Coin.Disk.RED);
-        Player player2 = new Player(coin, scanner.next(), nbDiskGrid/2);
+        Coin coin2 = new Coin();
+        coin2.setDisk(Coin.Disk.RED);
+        Player player2 = new Player(coin2, scanner.next(), nbDiskGrid/2);
         System.out.println("Joueurs créés");
 
         Game game = new Game(player1, player2, grid);
@@ -56,38 +59,39 @@ public class Game {
     }
 
     public void turn(){
-        Scanner scanner = new Scanner(System.in);
         if(turn){
             System.out.println("C'est au tour de " + player1.getName() + " de jouer, veuillez placer un disque");
-            playing(scanner, player1.getDisk());
+            playing(player1.getDisk());
             turn = false;
         } else {
             System.out.println("C'est au tour de " + player2.getName() + " de jouer, veuillez placer un disque");
-            playing(scanner, player2.getDisk());
+            playing(player2.getDisk());
             turn = true;
         }
-        scanner.close();
     }
 
-    public void playing(Scanner scanner, Coin disk){
+    public void playing(Coin disk){
+        Scanner scanner = new Scanner(System.in);
         while(true){
             try{
                 int index = scanner.nextInt();
-                scanner.nextLine();
+                //scanner.nextLine();
                 if(!(isFull(index-1))){
                     place(index-1, disk);
                     break;
                 } else {
                     System.out.println("La colonne " + index + " est pleine, veuillez rechoisir votre colonne");
                 }
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Veuillez mettre un nombre correct");
+            } finally {
+                scanner.close();
             }
         }
     }
 
     public boolean isFull(int index){
-        index--;
+        //index--;
         boolean is_full = true;;
         for (Coin coin : grid.getGrid().get(index)) {
             if(coin.getDisk() == Coin.Disk.VOID){
@@ -108,8 +112,8 @@ public class Game {
     public void verify(){
         verify_vertical();
         verify_horizontal();
-        verify_diag_acc();
-        verify_diag_des();
+        //verify_diag_acc();
+        //verify_diag_des();
     }
     private int verify_vertical(){
         int winner = 0;
@@ -166,7 +170,7 @@ public class Game {
         }
         return winner;
     }
-    private int verify_diag_acc(){ //Vérification diagonale croissante
+    /*private int verify_diag_acc(){ //Vérification diagonale croissante
         for (int i = 0; i < grid.getGrid().get(i).size()-4; i++) { 
             for (int j = 0; j < grid.getGrid().size()-4; j++) {
                 
@@ -175,5 +179,5 @@ public class Game {
     }
     private int verify_diag_des(){
 
-    }
+    }*/
 }

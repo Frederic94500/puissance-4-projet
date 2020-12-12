@@ -46,6 +46,7 @@ public class Main{
 
         while(true){
             game.turn();
+            System.out.println(game.getGrid());
         }  
     }
 }
