@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Classe principale du puissance 4
@@ -8,6 +9,7 @@ import java.io.IOException;
 
 public class Main{
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         Game game = null;
         try{ //Cas où le fichier existe
             System.out.println("Lecture de la partie...");
@@ -16,7 +18,7 @@ public class Main{
         }
         catch (IOException e){ //Cas où le fichier est inexistant
             System.out.println("Fichier inexistant, création de la partie");
-            game = Game.createGame();
+            game = Game.createGame(scanner);
             try {
                 File.save(game);
             } catch (IOException e1) {
@@ -26,7 +28,7 @@ public class Main{
         }
         catch (ArrayIndexOutOfBoundsException e){ //Cas où on démarre le programme sans argument
             System.out.println("Pas d'argument... Création de la partie");
-            game = Game.createGame();
+            game = Game.createGame(scanner);
             try {
                 File.save(game);
             } catch (IOException e1) {
@@ -44,9 +46,16 @@ public class Main{
             System.out.println(game.getGrid());
         }
 
-        while(true){
-            game.turn();
+        /*while(true){
+            game.turn(scanner);
             System.out.println(game.getGrid());
-        }  
+        }*/
+
+        for(int i = 0; i <= 5; i++){
+            game.turn(scanner);
+            System.out.println(game.getGrid());
+        }
+
+        scanner.close();  
     }
 }

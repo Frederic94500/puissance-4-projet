@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
+//import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -18,10 +18,8 @@ public class Game {
     public Game() {
     }
 
-    public static Game createGame(){
+    public static Game createGame(Scanner scanner){
         System.out.println("Création de la partie...");
-
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Création de la grid\nTaille de la grid, Largeur?");
         int width = scanner.nextInt();
@@ -47,7 +45,6 @@ public class Game {
         Game game = new Game(player1, player2, grid);
         System.out.println("Partie créée!");
 
-        scanner.close();
         return game;
     }
 
@@ -58,38 +55,36 @@ public class Game {
         return turn;
     }
 
-    public void turn(){
+    public void turn(Scanner scanner){
         if(turn){
             System.out.println("C'est au tour de " + player1.getName() + " de jouer, veuillez placer un disque");
-            playing(player1.getDisk());
+            playing(scanner ,player1.getDisk());
             turn = false;
         } else {
             System.out.println("C'est au tour de " + player2.getName() + " de jouer, veuillez placer un disque");
-            playing(player2.getDisk());
+            playing(scanner, player2.getDisk());
             turn = true;
         }
     }
 
-    public void playing(Coin disk){
-        Scanner scanner = new Scanner(System.in);
-        while(scanner.hasNextInt()){
-            try{
+    public void playing(Scanner scanner ,Coin disk){
+        while(scanner.hasNext()){
+            if(scanner.hasNextInt()){
                 int index = scanner.nextInt();
                 if(!(isFull(index-1))){
                     place(index-1, disk);
+                    scanner.close();
                     break;
                 } else {
                     System.out.println("La colonne " + index + " est pleine, veuillez rechoisir votre colonne");
                 }
-            } catch (InputMismatchException e) {
+            } else {
                 System.out.println("Veuillez mettre un nombre correct");
             }
         }
-        scanner.close();
     }
 
     public boolean isFull(int index){
-        //index--;
         boolean is_full = true;;
         for (Coin coin : grid.getGrid().get(index)) {
             if(coin.getDisk() == Coin.Disk.VOID){

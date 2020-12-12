@@ -30,7 +30,7 @@ public class Grid {
         s += width + "\n";
 
         for(int i = height-1; i >= 0; i--){
-            for(int j = width-1; j >= 0; j--){
+            for(int j = 0; j < width; j++){
                 switch(grid.get(j).get(i).getDisk()){
                     case YELLOW:
                         s += "X ";
