@@ -59,7 +59,7 @@ public class Main{
             } catch (IOException e) {
                 e.printStackTrace();
                 System.exit(0);
-            }
+            } 
         }
 
         scanner.close();  

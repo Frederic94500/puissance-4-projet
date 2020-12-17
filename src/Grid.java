@@ -51,4 +51,7 @@ public class Grid {
     public ArrayList<ArrayList<Coin>> getGrid() {
         return grid;
     }
+    public int getWidth() {
+        return width;
+    }
 }

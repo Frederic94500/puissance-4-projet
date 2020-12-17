@@ -20,10 +20,10 @@ public class Game {
     public static Game createGame(Scanner scanner){
         System.out.println("Création de la partie...");
 
-        System.out.println("Création de la grid\nTaille de la grid, Largeur?");
-        int width = scanner.nextInt();
-        System.out.println("Taille de la grid, Hauteur?");
-        int height = scanner.nextInt();
+        System.out.println("Création de la grille\nTaille de la grille, Largeur?");
+        int width = isInteger(scanner);
+        System.out.println("Taille de la grille, Hauteur?");
+        int height = isInteger(scanner);
         Grid grid = new Grid(width, height);
         System.out.println("Grille créée");
 
@@ -54,6 +54,20 @@ public class Game {
         return turn;
     }
 
+    public static int isInteger(Scanner scanner){
+        int index = 0;
+        while(scanner.hasNext()){
+            if(scanner.hasNextInt()) {
+                index = scanner.nextInt();
+                break;
+            } else {
+                System.out.println("Veuillez mettre un entier");
+                scanner.next();
+            }
+        }
+        return index;
+    }
+
     public void turn(Scanner scanner){
         if(turn){
             System.out.println("C'est au tour de " + player1.getName() + " de jouer, veuillez placer un disque");
@@ -67,9 +81,9 @@ public class Game {
     }
 
     public void playing(Scanner scanner, Coin disk){
-        while(scanner.hasNext()){
-            if(scanner.hasNextInt()) {
-                int index = scanner.nextInt();
+        while(true){
+            int index = isInteger(scanner);
+            if(index >= 1 && index <= grid.getWidth()){
                 if(!(isFull(index-1))){
                     place(index-1, disk);
                     break;
@@ -77,8 +91,7 @@ public class Game {
                     System.out.println("La colonne " + index + " est pleine, veuillez rechoisir votre colonne");
                 }
             } else {
-                System.out.println("Veuillez mettre un nombre correct");
-                scanner.next();
+                System.out.println("Vous avez mis une valeur trop élevé, veuillez rechoisir votre colonne entre 1 et " + grid.getWidth());
             }
         }
     }
