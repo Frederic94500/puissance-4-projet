@@ -49,14 +49,10 @@ public class Game {
 
         System.out.println("Création des joueurs");
         System.out.println("Nom du joueur 1?");
-        Coin coin = new Coin();
-        coin.setDisk(Coin.Disk.YELLOW);
-        Player player1 = new Player(coin, scanner.next());
+        Player player1 = new Player(new Coin(Coin.Disk.YELLOW), scanner.next());
 
         System.out.println("Nom du joueur 2?");
-        Coin coin2 = new Coin();
-        coin2.setDisk(Coin.Disk.RED);
-        Player player2 = new Player(coin2, scanner.next());
+        Player player2 = new Player(new Coin(Coin.Disk.RED), scanner.next());
         System.out.println("Joueurs créés");
 
         Game game = new Game(player1, player2, grid);
