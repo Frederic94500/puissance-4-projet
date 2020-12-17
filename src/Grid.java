@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Classe Grid du puissance 4
+ * Classe Grid (la grille de jeu) du puissance 4
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
@@ -9,12 +9,20 @@ import java.util.ArrayList;
 public class Grid {
     private int width;
     private int height;
+    private int nbCoin;
     private ArrayList<ArrayList<Coin>> grid; 
     
+    /**
+     * Constructeur de la grille
+     * @param width Longueur
+     * @param height Hauteur
+     */
     public Grid(int width, int height) {
-        this.grid = new ArrayList<ArrayList<Coin>>();
         this.width = width;
         this.height = height;
+        this.nbCoin = width * height;
+
+        this.grid = new ArrayList<ArrayList<Coin>>();
         for(int i = 0; i != width; i++ ) {
             grid.add(i, new ArrayList<Coin>());
             for(int j = 0; j < height; j++){
@@ -23,6 +31,9 @@ public class Grid {
         }
     }
 
+    /**
+     * Affiche la grille
+     */
     @Override
     public String toString(){
         String s = "";
@@ -48,10 +59,32 @@ public class Grid {
         return s;
     }
 
+    /**
+     * Décrémente le nombre de disques disponible pour le jeu
+     */
+    public void decrementnbCoin(){
+        nbCoin--;
+    }
+
+    /**
+     * Retourne la grille de jeu
+     * @return Retourne la grille
+     */
     public ArrayList<ArrayList<Coin>> getGrid() {
         return grid;
     }
+    /**
+     * Retourne la longueur de la grille
+     * @return Retourne la longueur
+     */
     public int getWidth() {
         return width;
+    }
+    /**
+     * Retourne le nombre de disques disponible
+     * @return Retourne le nombre de disques
+     */
+    public int getNbCoin(){
+        return nbCoin;
     }
 }

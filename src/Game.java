@@ -1,12 +1,24 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe Game du puissance 4 - Gérant la partie
+ * @author Frédéric TRAN - u21960418 - INFO G2A
+ * @author Tony TAVERNIER - u21808537 - INFO G2A
+ */
+
 public class Game {
     private Player player1;
     private Player player2;
     private boolean turn; // A qui le tour? true = player 1 (Jaune), false = player 2 (Rouge)
     private Grid grid;
 
+    /**
+     * Constructeur de la partie
+     * @param player1 Joueur 1
+     * @param player2 Joueur 2
+     * @param grid Grille
+     */
     public Game(Player player1, Player player2, Grid grid) {
         this.player1 = player1;
         this.player2 = player2;
@@ -14,9 +26,17 @@ public class Game {
         this.grid = grid;
     }
 
+    /**
+     * Constructeur de la partie, utile pour {@link #File.read(String file)}
+     */
     public Game() {
     }
 
+    /**
+     * Créée de la partie et renvoie la partie créée
+     * @param scanner Scanner d'entrée
+     * @return Retourne la partie créée
+     */
     public static Game createGame(Scanner scanner){
         System.out.println("Création de la partie...");
 
@@ -27,18 +47,16 @@ public class Game {
         Grid grid = new Grid(width, height);
         System.out.println("Grille créée");
 
-        int nbDiskGrid = width * height;
-
         System.out.println("Création des joueurs");
         System.out.println("Nom du joueur 1?");
         Coin coin = new Coin();
         coin.setDisk(Coin.Disk.YELLOW);
-        Player player1 = new Player(coin, scanner.next(), nbDiskGrid/2);
+        Player player1 = new Player(coin, scanner.next());
 
         System.out.println("Nom du joueur 2?");
         Coin coin2 = new Coin();
         coin2.setDisk(Coin.Disk.RED);
-        Player player2 = new Player(coin2, scanner.next(), nbDiskGrid/2);
+        Player player2 = new Player(coin2, scanner.next());
         System.out.println("Joueurs créés");
 
         Game game = new Game(player1, player2, grid);
@@ -47,27 +65,44 @@ public class Game {
         return game;
     }
 
+    /**
+     * Retourne la grille de jeu
+     * @return Retourne la grille
+     */
     public Grid getGrid() {
         return grid;
     }
+    /**
+     * Retourne la prochaine personne à jouer (le tour est décrit lors de la déclaration des variables)
+     * @return Retourne un booléen
+     */
     public boolean getTurn(){
         return turn;
     }
 
+    /**
+     * Vérifie si l'entrée est bien un entier et le retourne
+     * @param scanner Scanner d'entrée
+     * @return Retourne l'entier
+     */
     public static int isInteger(Scanner scanner){
-        int index = 0;
+        int integer = 0;
         while(scanner.hasNext()){
             if(scanner.hasNextInt()) {
-                index = scanner.nextInt();
+                integer = scanner.nextInt();
                 break;
             } else {
                 System.out.println("Veuillez mettre un entier");
                 scanner.next();
             }
         }
-        return index;
+        return integer;
     }
 
+    /**
+     * Le prochain qui doit jouer
+     * @param scanner Scanner d'entrée
+     */
     public void turn(Scanner scanner){
         if(turn){
             System.out.println("C'est au tour de " + player1.getName() + " de jouer, veuillez placer un disque");
@@ -80,22 +115,33 @@ public class Game {
         }
     }
 
+    /**
+     * Place un disque et décrémente le nombre de disque disponible si l'entier est entre 1 et la longueur et que la colonne n'est pas remplie
+     * @param scanner Scanner d'entrée
+     * @param disk Disque du joueur
+     */
     public void playing(Scanner scanner, Coin disk){
         while(true){
             int index = isInteger(scanner);
             if(index >= 1 && index <= grid.getWidth()){
                 if(!(isFull(index-1))){
                     place(index-1, disk);
+                    grid.decrementnbCoin();
                     break;
                 } else {
                     System.out.println("La colonne " + index + " est pleine, veuillez rechoisir votre colonne");
                 }
             } else {
-                System.out.println("Vous avez mis une valeur trop élevé, veuillez rechoisir votre colonne entre 1 et " + grid.getWidth());
+                System.out.println("Vous avez mis une valeur trop élevée ou erronée, veuillez rechoisir votre colonne entre 1 et " + grid.getWidth());
             }
         }
     }
 
+    /**
+     * Vérifie si la colonne est pleine 
+     * @param index Index de la colonne
+     * @return Retourne un booléen
+     */
     public boolean isFull(int index){
         boolean is_full = true;;
         for (Coin coin : grid.getGrid().get(index)) {
@@ -106,6 +152,11 @@ public class Game {
         return is_full;
     }
 
+    /**
+     * Place un disque sur la colonne choisi
+     * @param index Index de la colonne
+     * @param disk Disque du joueur
+     */
     public void place(int index, Coin disk) {
         for (Coin coin : grid.getGrid().get(index)){
             if(coin.getDisk() == Coin.Disk.VOID){
@@ -115,6 +166,9 @@ public class Game {
         }
     }
 
+    /**
+     * WIP
+     */
     public void verify(){
         verify_vertical();
         verify_horizontal();
