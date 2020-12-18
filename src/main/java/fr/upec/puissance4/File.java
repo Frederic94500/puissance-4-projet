@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -36,12 +37,12 @@ public class File {
 
     /**
      * Lit la partie
-     * @param file Fichier de la partie à lire
+     * @param path Fichier de la partie à lire
      * @return Retourne la partie
      * @throws IOException Echec de lecture
      */
-    public static Game read(String file) throws IOException{
-        try(Reader reader = Files.newBufferedReader(Paths.get(file))){
+    public static Game read(Path path) throws IOException{
+        try(Reader reader = Files.newBufferedReader(path)){
             return new Gson().fromJson(reader, Game.class);
         }
     }

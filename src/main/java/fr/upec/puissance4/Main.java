@@ -1,6 +1,9 @@
 package fr.upec.puissance4;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -19,11 +22,11 @@ public class Main{
             game = Game.createGame(scanner);
             saving(game);
         } else {
-            java.io.File file = new java.io.File(args[0]);
-            if(file.exists()){
+            Path path = Paths.get(args[0]);
+            if(Files.exists(path)){
                 System.out.println("Lecture de la partie...");
                 try {
-                    game = fr.upec.puissance4.File.read(args[0]);
+                    game = fr.upec.puissance4.File.read(path);
                 } catch (IOException e) {
                     e.printStackTrace();
                     System.exit(1);
