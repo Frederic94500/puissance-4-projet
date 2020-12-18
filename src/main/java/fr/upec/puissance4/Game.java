@@ -77,6 +77,20 @@ public class Game {
     public boolean getTurn(){
         return turn;
     }
+    /**
+     * Retourne le joueur 1
+     * @return Retourne le joueur 1
+     */
+    public Player getPlayer1() {
+        return player1;
+    }
+    /**
+     * Retourne le joueur 2
+     * @return Retourne le joueur 2
+     */
+    public Player getPlayer2() {
+        return player2;
+    }
 
     /**
      * Vérifie si l'entrée est bien un entier et le retourne
@@ -167,13 +181,7 @@ public class Game {
     /**
      * WIP
      */
-    public void verify(){
-        verify_vertical();
-        verify_horizontal();
-        //verify_diag_acc();
-        //verify_diag_des();
-    }
-    private int verify_vertical(){
+    public int verify_vertical(){
         int winner = 0;
         for(ArrayList<Coin> vert : grid.getGrid()){ //Vérification verticale
             int red = 0;
@@ -191,18 +199,18 @@ public class Game {
                     default: break;
                 }
                 if(yellow == 4){
-                    System.out.println("Jaune gagne!");
                     winner = 1;
+                    break;
                 }
                 if(red == 4){
-                    System.out.println("Rouge gagne!");
                     winner = 2;
+                    break;
                 } 
             }
         }
         return winner;
     }
-    private int verify_horizontal(){
+    public int verify_horizontal(){
         int winner = 0;
         for(int i = 0; i < grid.getGrid().get(i).size(); i++){ //Vérification horizontale
             int red = 0;
@@ -217,25 +225,25 @@ public class Game {
                     yellow++;
                 }
                 if(yellow == 4){
-                    System.out.println("Jaune gagne!");
                     winner = 1;
+                    break;
                 }
                 if(red == 4){
-                    System.out.println("Rouge gagne!");
-                    winner =2;
+                    winner = 2;
+                    break;
                 }
             }
         }
         return winner;
     }
-    /*private int verify_diag_acc(){ //Vérification diagonale croissante
+    /*public int verify_diag_acc(){ //Vérification diagonale croissante
         for (int i = 0; i < grid.getGrid().get(i).size()-4; i++) { 
             for (int j = 0; j < grid.getGrid().size()-4; j++) {
                 
             }
         }
     }
-    private int verify_diag_des(){
+    public int verify_diag_des(){
 
     }*/
 }

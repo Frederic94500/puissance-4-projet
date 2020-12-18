@@ -13,6 +13,7 @@ public class Main{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Game game = null;
+
         try{ //Cas où le fichier existe
             System.out.println("Lecture de la partie...");
             game = File.read(args[0]);
@@ -48,12 +49,7 @@ public class Main{
             System.out.println(game.getGrid());
         }
 
-        /*while(true){
-            game.turn(scanner);
-            System.out.println(game.getGrid());
-        }*/
-
-        for(int i = 0; i <= 5; i++){
+        do{
             game.turn(scanner);
             System.out.println(game.getGrid());
             try {
@@ -62,6 +58,15 @@ public class Main{
                 e.printStackTrace();
                 System.exit(0);
             } 
+        } while (game.verify_horizontal() == 0 && game.verify_vertical() == 0);
+
+        String[] message = {"", game.getPlayer1().getName() + " gagne la partie!", game.getPlayer2().getName() + " gagne la partie!"};
+        int[] winner = {game.verify_horizontal(), game.verify_vertical()};
+
+        for (int i : winner) {
+            if(i != 0){
+                System.out.println(message[i]);
+            }
         }
 
         scanner.close();  
