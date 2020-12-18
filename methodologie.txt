@@ -39,17 +39,25 @@ https://docs.oracle.com/javase/7/docs/api/java/io/FileReader.html
 https://mkyong.com/java/how-to-parse-json-with-gson/
 https://howtodoinjava.com/gson/gson-jsonparser/
 https://stackoverflow.com/questions/11443928/how-to-modify-values-of-jsonobject-jsonarray-directly
-https://attacomsian.com/blog/gson-write-json-file
 
 https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 
+Gson:
 https://stackoverflow.com/questions/29965764/how-to-parse-json-file-with-gson
+https://attacomsian.com/blog/gson-write-json-file
+
+Manipulation
 https://www.geeksforgeeks.org/arraylist-of-arraylist-in-java/
 https://stackoverflow.com/questions/7833689/java-string-new-line
 https://www.w3schools.com/java/java_arraylist.asp
 https://www.w3schools.com/java/java_enums.asp
 https://www.w3schools.com/java/java_switch.asp
 https://www.javatpoint.com/java-get-current-date
+
+Maven:
+https://maven.apache.org/guides/getting-started/
+https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html
+https://openclassrooms.com/fr/courses/4503526-organisez-et-packagez-une-application-java-avec-apache-maven/4608897-creez-votre-premier-projet-maven
 
 Screenshot du cours:
 https://s3.frederic94500.net/2020/11/36ibC.png
