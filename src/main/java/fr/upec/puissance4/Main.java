@@ -14,50 +14,34 @@ public class Main{
         Scanner scanner = new Scanner(System.in);
         Game game = null;
 
-        try{ //Cas où le fichier existe
-            System.out.println("Lecture de la partie...");
-            game = File.read(args[0]);
-            System.out.println("Lecture réussi!");
-        }
-        catch (IOException e){ //Cas où le fichier est inexistant
-            System.out.println("Fichier inexistant, création de la partie");
-            game = Game.createGame(scanner);
-            try {
-                File.save(game);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                System.exit(0);
-            }
-        }
-        catch (ArrayIndexOutOfBoundsException e){ //Cas où on démarre le programme sans argument
+        if(args.length == 0){
             System.out.println("Pas d'argument... Création de la partie");
             game = Game.createGame(scanner);
-            try {
-                File.save(game);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                System.exit(0);
+            saving(game);
+        } else {
+            java.io.File file = new java.io.File(args[0]);
+            if(file.exists()){
+                System.out.println("Lecture de la partie...");
+                try {
+                    game = fr.upec.puissance4.File.read(args[0]);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.exit(1);
+                }
+            } else {
+                System.out.println("Fichier inexistant, création de la partie");
+                game = Game.createGame(scanner);
+                saving(game);
             }
         }
-        catch (Exception e) {
-            System.out.println("Erreur inconnu!");
-            e.printStackTrace();
-            System.exit(0);
-        }
-        finally{
-            System.out.println("Affichage de la grille");
-            System.out.println(game.getGrid());
-        }
+
+        System.out.println("Affichage de la grille");
+        System.out.println(game.getGrid());
 
         do{
             game.turn(scanner);
             System.out.println(game.getGrid());
-            try {
-                File.save(game);
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.exit(0);
-            } 
+            saving(game);
         } while (game.verify_horizontal() == 0 && game.verify_vertical() == 0);
 
         String[] message = {"", game.getPlayer1().getName() + " gagne la partie!", game.getPlayer2().getName() + " gagne la partie!"};
@@ -70,5 +54,14 @@ public class Main{
         }
 
         scanner.close();  
+    }
+
+    public static void saving(Game game){
+        try {
+            fr.upec.puissance4.File.save(game);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 }
