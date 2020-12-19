@@ -27,8 +27,7 @@ public class File {
     public static void save(Game game) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        Writer writer = Files.newBufferedWriter(Paths.get("partie-" + date.format(LocalDateTime.now()) + ".json"));
+        Writer writer = Files.newBufferedWriter(Paths.get("partie-" + DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now()) + ".json"));
 
         gson.toJson(game, writer);
 
