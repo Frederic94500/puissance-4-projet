@@ -41,25 +41,18 @@ public class Main{
         System.out.println("Affichage de la grille");
         System.out.println(game.getGrid());
 
-        while (game.verify_horizontal() == 0 && game.verify_vertical() == 0 && game.getGrid().getNbCoin() != 0){
+        int winner = game.verify(); //0 = plus de disque, 1 = jaune qui gagne, 2 = rouge qui gagne
+
+        while (winner == 0 && game.getGrid().getNbCoin() != 0){
             game.turn(scanner);
             System.out.println(game.getGrid());
             saving(game);
+            winner = game.verify();
         }
 
         String[] message = {"Il n'y a plus de disque disponible pour jouer :(, égalité.", game.getPlayer1().getName() + " gagne la partie!", game.getPlayer2().getName() + " gagne la partie!"};
-        int[] winner = {game.verify_horizontal(), game.verify_vertical()};
-        boolean validation = false;
 
-        for (int i : winner) {
-            if(i != 0){
-                System.out.println(message[i]);
-                validation = true;
-                break;
-            }
-        }
-
-        if(!validation){ System.out.println(message[0]); }
+        System.out.println(message[winner]);
 
         scanner.close();  
     }

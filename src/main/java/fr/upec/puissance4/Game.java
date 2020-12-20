@@ -112,6 +112,24 @@ public class Game {
     }
 
     /**
+     * Vérifie si l'enntrée est supérieur ou égale à 4
+     * @param scanner Scanner d'entrée
+     * @return Retourne l'entier
+     */
+    public int isMinFour(Scanner scanner){
+        int integer = 0;
+        while(true){
+            integer = isInteger(scanner);
+            if(integer >= 4){
+                break;
+            } else {
+                System.out.println("Veuillez mettre un nombre égal ou supérieur à 4");
+            }
+        }
+        return integer;
+    }
+
+    /**
      * Le prochain qui doit jouer
      * @param scanner Scanner d'entrée
      */
@@ -181,6 +199,16 @@ public class Game {
     /**
      * WIP
      */
+    public int verify(){
+        int[] verify = {verify_horizontal(), verify_vertical()};
+        int max = 0;
+        for (int i : verify) {
+            if(max > i) {
+                max = i;
+            }
+        }
+        return max;
+    }
     public int verify_vertical(){
         int winner = 0;
         for(ArrayList<Coin> vert : grid.getGrid()){ //Vérification verticale

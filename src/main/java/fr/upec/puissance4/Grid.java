@@ -34,7 +34,30 @@ public class Grid {
     }
 
     /**
+     * Retourne la grille de jeu
+     * @return Retourne la grille
+     */
+    public ArrayList<ArrayList<Coin>> getGrid() {
+        return grid;
+    }
+    /**
+     * Retourne la longueur de la grille
+     * @return Retourne la longueur
+     */
+    public int getWidth() {
+        return width;
+    }
+    /**
+     * Retourne le nombre de disques disponible
+     * @return Retourne le nombre de disques
+     */
+    public int getNbCoin(){
+        return nbCoin;
+    }
+
+    /**
      * Affiche la grille
+     * @return Retourne la grille
      */
     @Override
     public String toString(){
@@ -66,27 +89,5 @@ public class Grid {
      */
     public void decrementnbCoin(){
         nbCoin--;
-    }
-
-    /**
-     * Retourne la grille de jeu
-     * @return Retourne la grille
-     */
-    public ArrayList<ArrayList<Coin>> getGrid() {
-        return grid;
-    }
-    /**
-     * Retourne la longueur de la grille
-     * @return Retourne la longueur
-     */
-    public int getWidth() {
-        return width;
-    }
-    /**
-     * Retourne le nombre de disques disponible
-     * @return Retourne le nombre de disques
-     */
-    public int getNbCoin(){
-        return nbCoin;
     }
 }
