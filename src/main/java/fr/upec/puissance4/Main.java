@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * Classe principale du puissance 4
  * @author Frédéric TRAN - u21960418 - INFO G2A
- * @author Tony TAVERNIER - u - INFO G2A
+ * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
 
 public class Main{

@@ -29,7 +29,8 @@ public class Game {
     }
 
     /**
-     * Constructeur de la partie, utile pour {@link #File.read(String file)}
+     * Constructeur de la partie
+     * @see fr.upec.puissance4.File#read(java.nio.file.Path)
      */
     public Game() {
     }
@@ -112,7 +113,7 @@ public class Game {
     }
 
     /**
-     * Vérifie si l'enntrée est supérieur ou égale à 4
+     * Vérifie si l'entrée est supérieur ou égale à 4
      * @param scanner Scanner d'entrée
      * @return Retourne l'entier
      */
@@ -201,7 +202,7 @@ public class Game {
      * @return Retourne le gagnant ou non
      */
     public int verify(){
-        int[] verify = {verify_horizontal(), verify_vertical()};
+        int[] verify = {verifyHorizontal(), verifyVertical(), verifyDiagAcc(), verifyDiagDes()};
         int max = 0;
         for (int i : verify) {
             if(max < i) {
@@ -211,12 +212,12 @@ public class Game {
         return max;
     }
     /**
-     * Vérifie la grille à la vertical
-     * @return
+     * Vérifie la grille à la verticale
+     * @return Retourne le gagnant ou non
      */
-    public int verify_vertical(){
+    public int verifyVertical(){
         int winner = 0;
-        for(ArrayList<Coin> vert : grid.getGrid()){ //Vérification verticale
+        for(ArrayList<Coin> vert : grid.getGrid()){
             int red = 0;
             int yellow = 0;
             for(Coin coin : vert){
@@ -243,9 +244,13 @@ public class Game {
         }
         return winner;
     }
-    public int verify_horizontal(){
+    /**
+     * Vérifie la grille à l'horizontale
+     * @return Retourne le gagnant ou non
+     */
+    public int verifyHorizontal(){
         int winner = 0;
-        for(int i = 0; i < grid.getGrid().get(0).size()-1; i++){ //Vérification horizontale
+        for(int i = 0; i < grid.getGrid().get(0).size()-1; i++){
             int red = 0;
             int yellow = 0;
             for(int j = 0; j < grid.getGrid().size(); j++){
@@ -269,14 +274,68 @@ public class Game {
         }
         return winner;
     }
-    /*public int verify_diag_acc(){ //Vérification diagonale croissante
-        for (int i = 0; i < grid.getGrid().get(i).size()-4; i++) { 
-            for (int j = 0; j < grid.getGrid().size()-4; j++) {
-                
+    /**
+     * Vérifie la grille à la diagonale accendante
+     * @return Retourne le gagnant ou non
+     */
+    public int verifyDiagAcc(){
+        int winner = 0;
+        for (int i = 0; i <= grid.getGrid().get(i).size()-4; i++) { 
+            for (int j = 0; j <= grid.getGrid().size()-4; j++) {
+                int red = 0;
+                int yellow = 0;
+                for (int k = 0; k < 4; k++) {
+                    if(grid.getGrid().get(j+k).get(i+k).getDisk() == Coin.Disk.RED){
+                        red++;
+                        yellow = 0;
+                    }
+                    if(grid.getGrid().get(j+k).get(i+k).getDisk() == Coin.Disk.YELLOW){
+                        red = 0;
+                        yellow++;
+                    }
+                    if(yellow == 4){
+                        winner = 1;
+                        break;
+                    }
+                    if(red == 4){
+                        winner = 2;
+                        break;
+                    }
+                }
             }
         }
+        return winner;
     }
-    public int verify_diag_des(){
-
-    }*/
+    /**
+     * Vérifie la grille à la diagonale descendante
+     * @return Retourne le gagnant ou non
+     */
+    public int verifyDiagDes(){
+        int winner = 0;
+        for (int i = 3; i < grid.getGrid().get(0).size(); i++) { 
+            for (int j = 0; j <= grid.getGrid().size()-4; j++) {
+                int red = 0;
+                int yellow = 0;
+                for (int k = 0; k < 4; k++) {
+                    if(grid.getGrid().get(j+k).get(i-k).getDisk() == Coin.Disk.RED){
+                        red++;
+                        yellow = 0;
+                    }
+                    if(grid.getGrid().get(j+k).get(i-k).getDisk() == Coin.Disk.YELLOW){
+                        red = 0;
+                        yellow++;
+                    }
+                    if(yellow == 4){
+                        winner = 1;
+                        break;
+                    }
+                    if(red == 4){
+                        winner = 2;
+                        break;
+                    }
+                }
+            }
+        }
+        return winner;
+    }
 }
