@@ -51,7 +51,6 @@ public class Main{
         }
 
         String[] message = {"Il n'y a plus de disque disponible pour jouer :(, égalité.", game.getPlayer1().getName() + " gagne la partie!", game.getPlayer2().getName() + " gagne la partie!"};
-
         System.out.println(message[winner]);
 
         scanner.close();  

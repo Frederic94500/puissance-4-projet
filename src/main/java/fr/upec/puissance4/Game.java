@@ -43,9 +43,9 @@ public class Game {
         System.out.println("Création de la partie...");
 
         System.out.println("Création de la grille\nTaille de la grille, Largeur?");
-        int width = isInteger(scanner);
+        int width = isMinFour(scanner);
         System.out.println("Taille de la grille, Hauteur?");
-        int height = isInteger(scanner);
+        int height = isMinFour(scanner);
         Grid grid = new Grid(width, height);
         System.out.println("Grille créée");
 
@@ -116,7 +116,7 @@ public class Game {
      * @param scanner Scanner d'entrée
      * @return Retourne l'entier
      */
-    public int isMinFour(Scanner scanner){
+    public static int isMinFour(Scanner scanner){
         int integer = 0;
         while(true){
             integer = isInteger(scanner);
@@ -197,18 +197,23 @@ public class Game {
     }
 
     /**
-     * WIP
+     * Vérifie la grille s'il y a un gagnant ou non
+     * @return Retourne le gagnant ou non
      */
     public int verify(){
         int[] verify = {verify_horizontal(), verify_vertical()};
         int max = 0;
         for (int i : verify) {
-            if(max > i) {
+            if(max < i) {
                 max = i;
             }
         }
         return max;
     }
+    /**
+     * Vérifie la grille à la vertical
+     * @return
+     */
     public int verify_vertical(){
         int winner = 0;
         for(ArrayList<Coin> vert : grid.getGrid()){ //Vérification verticale
@@ -240,7 +245,7 @@ public class Game {
     }
     public int verify_horizontal(){
         int winner = 0;
-        for(int i = 0; i < grid.getGrid().get(i).size(); i++){ //Vérification horizontale
+        for(int i = 0; i < grid.getGrid().get(0).size()-1; i++){ //Vérification horizontale
             int red = 0;
             int yellow = 0;
             for(int j = 0; j < grid.getGrid().size(); j++){

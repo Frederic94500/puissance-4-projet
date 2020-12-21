@@ -48,6 +48,13 @@ public class Grid {
         return width;
     }
     /**
+     * Retourne la hauteur de la grille
+     * @return Retourne la hauteur
+     */
+    public int getHeight() {
+        return height;
+    }
+    /**
      * Retourne le nombre de disques disponible
      * @return Retourne le nombre de disques
      */

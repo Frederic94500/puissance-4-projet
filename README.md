@@ -7,9 +7,13 @@ Projet Puissance 4
 Ce projet nécessite [gson](https://github.com/google/gson) pour fonctionner.<br>
 Ou de Maven (dépendance automatique).
 
-## Compilation
+## Compilation - Génération Javadoc
 
-`mvn clean package`
+`mvn clean package javadoc:javadoc`
+
+## Javadoc
+
+~~https://upec.frederic94500.net/puissance-4/~~
 
 ## Execution
 
