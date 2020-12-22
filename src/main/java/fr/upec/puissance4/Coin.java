@@ -1,7 +1,7 @@
 package fr.upec.puissance4;
 
 /**
- * Classe Coin (représente les disques) du puissance 4
+ * Classe Coin du puissance 4 - Représente la case ou le disque
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */

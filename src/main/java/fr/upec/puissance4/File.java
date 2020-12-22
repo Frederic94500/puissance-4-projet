@@ -17,11 +17,10 @@ import com.google.gson.GsonBuilder;
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
-
 public class File {
     /**
      * Enregistre la partie
-     * @param game La partie
+     * @param game La partie à enregistrer
      * @throws IOException Echec d'écriture 
      */
     public static void save(Game game) throws IOException {

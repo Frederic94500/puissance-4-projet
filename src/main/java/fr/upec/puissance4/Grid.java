@@ -3,17 +3,16 @@ package fr.upec.puissance4;
 import java.util.ArrayList;
 
 /**
- * Classe Grid (la grille de jeu) du puissance 4
+ * Classe Grid du puissance 4 - La grille de jeu
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
-
 public class Grid {
     private int width;
     private int height;
     private int nbCoin;
-    private ArrayList<ArrayList<Coin>> grid; 
-    
+    private ArrayList<ArrayList<Coin>> grid;
+
     /**
      * Constructeur de la grille
      * @param width Longueur
@@ -76,10 +75,10 @@ public class Grid {
             for(int j = 0; j < width; j++){
                 switch(grid.get(j).get(i).getDisk()){
                     case YELLOW:
-                        s += "X ";
+                        s += Main.os.getYellow() + "X " + Main.os.getReset();
                         break;
                     case RED:
-                        s += "O ";
+                        s += Main.os.getRed() + "O " + Main.os.getReset();
                         break;
                     case VOID:
                         s += "_ ";

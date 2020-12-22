@@ -2,11 +2,9 @@ package fr.upec.puissance4;
 
 /**
  * Classe Player du puissance 4 - Données d'un joueur
- * 
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
-
 public class Player {
     private String name;
     private Coin disk; //YELLOW = player 1 (Jaune), RED = player 2 (Rouge)

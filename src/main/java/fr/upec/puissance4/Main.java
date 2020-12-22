@@ -11,8 +11,9 @@ import java.util.Scanner;
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
-
 public class Main{
+    static OS os = new OS();
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Game game = null;
@@ -38,24 +39,32 @@ public class Main{
             }
         }
 
-        System.out.println("Affichage de la grille");
+        System.out.println("\n=====Affichage de la grille=====");
         System.out.println(game.getGrid());
 
         int winner = game.verify(); //0 = plus de disque, 1 = jaune qui gagne, 2 = rouge qui gagne
 
         while (winner == 0 && game.getGrid().getNbCoin() != 0){
             game.turn(scanner);
+            os.clear();
             System.out.println(game.getGrid());
             saving(game);
             winner = game.verify();
         }
 
-        String[] message = {"Il n'y a plus de disque disponible pour jouer :(, égalité.", game.getPlayer1().getName() + " gagne la partie!", game.getPlayer2().getName() + " gagne la partie!"};
+        String[] message = {"Il n'y a plus de disque disponible pour jouer :(, égalité.", 
+            os.getYellow() + game.getPlayer1().getName() + " gagne la partie!", 
+            os.getRed() + game.getPlayer2().getName() + " gagne la partie!"};
         System.out.println(message[winner]);
 
         scanner.close();  
     }
 
+    /**
+     * Sauvegarde la partie
+     * @see fr.upec.puissance4.File#save(Game)
+     * @param game La partie
+     */
     public static void saving(Game game){
         try {
             fr.upec.puissance4.File.save(game);

@@ -4,7 +4,7 @@ en argument: le fichier -> Si oui: charge la partie
 			Sinon: création de la partie
 			Sans argument: crée la partie
 
-méthode: ArrayList de ArrayList de BoxGrid
+méthode: ArrayList de ArrayList de Coin
 
 Enregistrement: colonne par colonne
 
@@ -15,15 +15,16 @@ Enregistrement: colonne par colonne
 4 4 4 
 5 5 5 
 
-Enregistrement dans le fichier: géré par gson via la méthode toJson() -> enregistrement dans un fichier .json
+Enregistrement dans un fichier: géré par gson via la méthode toJson() -> enregistrement dans un fichier .json
+Lecture d'un fichier: géré par gson via la méthode fromJson() -> lit un fichier et le transforme en objet Game
 
-Pile -> plus compliqué
-Tableau à 2 dimensions -> plus simple
-ArrayList -> Encore plus simple
-
-Modèle de sauvegarde: libre, JSON justifié
-
-Pour l'affichage de la grille de jeu, elle se fera de la fin du sauvegarde jusqu'au début de la sauvegarde
+Déroulement:
+1 - Création de la partie ou lecture de la partie
+2 - Vérification de la partie s'il y a un gagnant, si oui, aller à 6, sinon continuer
+3 - A qui doit placer un disque
+4 - Affiche la grille
+5 - Recommencer depuis 2
+6 - Annonce du gagnant ou non
 
 Source:
 Gitlab LACL -> push Github
@@ -31,20 +32,14 @@ Gitlab LACL -> push Github
 Pour Frédéric: commit avec clé GPG
 
 Documentation:
-https://www.w3schools.com/java/java_files_read.asp
-https://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
-https://github.com/google/gson
-https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/module-summary.html
-https://docs.oracle.com/javase/7/docs/api/java/io/FileReader.html
-https://mkyong.com/java/how-to-parse-json-with-gson/
-https://howtodoinjava.com/gson/gson-jsonparser/
-https://stackoverflow.com/questions/11443928/how-to-modify-values-of-jsonobject-jsonarray-directly
-
+Gestion des couleurs:
 https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+https://stackoverflow.com/questions/228477/how-do-i-programmatically-determine-operating-system-in-java
 
 Gson:
-https://stackoverflow.com/questions/29965764/how-to-parse-json-file-with-gson
 https://attacomsian.com/blog/gson-write-json-file
+https://github.com/google/gson
+https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/module-summary.html
 
 Manipulation
 https://www.geeksforgeeks.org/arraylist-of-arraylist-in-java/

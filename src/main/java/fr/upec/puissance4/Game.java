@@ -8,7 +8,6 @@ import java.util.Scanner;
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
-
 public class Game {
     private Player player1;
     private Player player2;
@@ -41,25 +40,25 @@ public class Game {
      * @return Retourne la partie créée
      */
     public static Game createGame(Scanner scanner){
-        System.out.println("Création de la partie...");
+        System.out.println("=====Création de la partie=====");
 
-        System.out.println("Création de la grille\nTaille de la grille, Largeur?");
+        System.out.println("=====Création de la grille=====\nTaille de la grille, Largeur?");
         int width = isMinFour(scanner);
         System.out.println("Taille de la grille, Hauteur?");
         int height = isMinFour(scanner);
         Grid grid = new Grid(width, height);
-        System.out.println("Grille créée");
+        System.out.println("=====Grille créée=====");
 
-        System.out.println("Création des joueurs");
+        System.out.println("=====Création des joueurs=====");
         System.out.println("Nom du joueur 1?");
         Player player1 = new Player(new Coin(Coin.Disk.YELLOW), scanner.next());
 
         System.out.println("Nom du joueur 2?");
         Player player2 = new Player(new Coin(Coin.Disk.RED), scanner.next());
-        System.out.println("Joueurs créés");
+        System.out.println("=====Joueurs créés=====");
 
         Game game = new Game(player1, player2, grid);
-        System.out.println("Partie créée!");
+        System.out.println("=====Partie créée!=====");
 
         return game;
     }
@@ -105,7 +104,7 @@ public class Game {
                 integer = scanner.nextInt();
                 break;
             } else {
-                System.out.println("Veuillez mettre un entier");
+                System.out.println(Main.os.getError() + "Veuillez mettre un entier" + Main.os.getReset());
                 scanner.next();
             }
         }
@@ -124,7 +123,7 @@ public class Game {
             if(integer >= 4){
                 break;
             } else {
-                System.out.println("Veuillez mettre un nombre égal ou supérieur à 4");
+                System.out.println(Main.os.getError() + "Veuillez mettre un nombre égal ou supérieur à 4" + Main.os.getReset());
             }
         }
         return integer;
@@ -136,11 +135,11 @@ public class Game {
      */
     public void turn(Scanner scanner){
         if(turn){
-            System.out.println("C'est au tour de " + player1.getName() + " de jouer, veuillez placer un disque");
-            playing(scanner ,player1.getDisk());
+            System.out.println("C'est au tour de " + Main.os.getYellow() + player1.getName() + Main.os.getReset() +" de jouer, veuillez placer un disque");
+            playing(scanner, player1.getDisk());
             turn = false;
         } else {
-            System.out.println("C'est au tour de " + player2.getName() + " de jouer, veuillez placer un disque");
+            System.out.println("C'est au tour de " + Main.os.getRed() + player2.getName() + Main.os.getReset() + " de jouer, veuillez placer un disque");
             playing(scanner, player2.getDisk());
             turn = true;
         }
@@ -160,10 +159,10 @@ public class Game {
                     grid.decrementnbCoin();
                     break;
                 } else {
-                    System.out.println("La colonne " + index + " est pleine, veuillez rechoisir votre colonne");
+                    System.out.println(Main.os.getError() + "La colonne " + index + " est pleine, veuillez rechoisir votre colonne" + Main.os.getReset());
                 }
             } else {
-                System.out.println("Vous avez mis une valeur trop élevée ou erronée, veuillez rechoisir votre colonne entre 1 et " + grid.getWidth());
+                System.out.println(Main.os.getError() + "Vous avez mis une valeur trop élevée ou erronée, veuillez rechoisir votre colonne entre 1 et " + grid.getWidth() + Main.os.getReset());
             }
         }
     }
@@ -215,7 +214,7 @@ public class Game {
      * Vérifie la grille à la verticale
      * @return Retourne le gagnant ou non
      */
-    public int verifyVertical(){
+    private int verifyVertical(){
         int winner = 0;
         for(ArrayList<Coin> vert : grid.getGrid()){
             int red = 0;
@@ -248,7 +247,7 @@ public class Game {
      * Vérifie la grille à l'horizontale
      * @return Retourne le gagnant ou non
      */
-    public int verifyHorizontal(){
+    private int verifyHorizontal(){
         int winner = 0;
         for(int i = 0; i < grid.getGrid().get(0).size()-1; i++){
             int red = 0;
@@ -278,7 +277,7 @@ public class Game {
      * Vérifie la grille à la diagonale accendante
      * @return Retourne le gagnant ou non
      */
-    public int verifyDiagAcc(){
+    private int verifyDiagAcc(){
         int winner = 0;
         for (int i = 0; i <= grid.getGrid().get(i).size()-4; i++) { 
             for (int j = 0; j <= grid.getGrid().size()-4; j++) {
@@ -310,7 +309,7 @@ public class Game {
      * Vérifie la grille à la diagonale descendante
      * @return Retourne le gagnant ou non
      */
-    public int verifyDiagDes(){
+    private int verifyDiagDes(){
         int winner = 0;
         for (int i = 3; i < grid.getGrid().get(0).size(); i++) { 
             for (int j = 0; j <= grid.getGrid().size()-4; j++) {
