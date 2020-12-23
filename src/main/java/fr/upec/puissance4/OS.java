@@ -1,10 +1,7 @@
 package fr.upec.puissance4;
 
-import java.io.IOException;
-
 /**
- * Classe OS du puissance 4 Contient les couleurs, ATTENTION: NE FONCTIONNE QUE SUR TERMINAUX UNIX ET LINUX 
- * Contient la commande clear, en fonction du système d'exploitation
+ * Classe OS du puissance 4 Contient les couleurs, ATTENTION: NE FONCTIONNE QUE SUR TERMINAUX UNIX ET LINUX
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
@@ -14,14 +11,15 @@ public class OS {
     private String error = "\u001B[41m";
     private String reset = "\u001B[0m";
 
-    private String os = System.getProperty("os.name");
+    private String os;
 
     /**
-     * Constructeur de Color, contruit en fonction du système d'exploitation, si
-     * c'est Windows, alors pas de couleur et la commande est "cls". Sinon, on reste
-     * sur les paramètres définis
+     * Constructeur de OS, contruit en fonction du système d'exploitation,
+     * si c'est Windows, alors pas de couleur.
+     * Sinon, on reste sur les paramètres définis.
      */
     public OS() {
+        this.os = System.getProperty("os.name");
         if (os.startsWith("Windows")) {
             this.red = "";
             this.yellow = "";
@@ -60,21 +58,5 @@ public class OS {
      */
     public String getError() {
         return error;
-    }
-
-    /**
-     * Retourne la commande de nettoyage du terminal *WIP*
-     * @return Retourne la commande
-     */
-    public void clear() {
-        if(os.startsWith("Windows")){
-            try {
-                Runtime.getRuntime().exec("cls");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.flush();
-        }
     }
 }

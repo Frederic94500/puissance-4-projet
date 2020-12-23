@@ -46,7 +46,6 @@ public class Main{
 
         while (winner == 0 && game.getGrid().getNbCoin() != 0){
             game.turn(scanner);
-            os.clear();
             System.out.println(game.getGrid());
             saving(game);
             winner = game.verify();
