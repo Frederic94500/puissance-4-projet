@@ -93,7 +93,7 @@ public class Grid {
     /**
      * Décrémente le nombre de disques disponible pour le jeu
      */
-    public void decrementnbCoin(){
+    public void decrementNbCoin(){
         nbCoin--;
     }
 }

@@ -7,6 +7,7 @@ package fr.upec.puissance4;
  */
 public class Player {
     private String name;
+    private AI ai; //null = non IA, 0 = Bogo, 1 = Min/Max, 2 - α/β
     private Coin disk; //YELLOW = player 1 (Jaune), RED = player 2 (Rouge)
 
     /**
@@ -14,8 +15,9 @@ public class Player {
      * @param disk Son disque
      * @param name Son nom
      */
-    public Player(Coin disk, String name){
+    public Player(Coin disk, AI ai, String name){
         this.disk = disk;
+        this.ai = ai;
         this.name = name;
     }
 
@@ -32,5 +34,12 @@ public class Player {
      */
     public String getName(){
         return name;
+    }
+    /**
+     * Retourne le type de joueur
+     * @return Retourne un booléen 
+     */
+    public AI getAI(){
+        return ai;
     }
 }

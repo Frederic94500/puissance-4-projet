@@ -39,7 +39,7 @@ public class Game {
      * @param scanner Scanner d'entrée
      * @return Retourne la partie créée
      */
-    public static Game createGame(Scanner scanner){
+    public static Game createGame(Scanner scanner) {
         System.out.println("=====Création de la partie=====");
 
         System.out.println("=====Création de la grille=====\nTaille de la grille, Largeur?");
@@ -51,10 +51,20 @@ public class Game {
 
         System.out.println("=====Création des joueurs=====");
         System.out.println("Nom du joueur 1?");
-        Player player1 = new Player(new Coin(Coin.Disk.YELLOW), scanner.next());
+        String name1 = scanner.next();
+        AI ai1 = null;
+        if (name1.equals("IA") || name1.equals("AI")) {
+            ai1 = AI.createAI(scanner);
+        }
+        Player player1 = new Player(new Coin(Coin.Disk.YELLOW), ai1, name1);
 
         System.out.println("Nom du joueur 2?");
-        Player player2 = new Player(new Coin(Coin.Disk.RED), scanner.next());
+        String name2 = scanner.next();
+        AI ai2 = null;
+        if (name2.equals("IA") || name2.equals("AI")) {
+            ai2 = AI.createAI(scanner);
+        }
+        Player player2 = new Player(new Coin(Coin.Disk.YELLOW), ai2, name2);
         System.out.println("=====Joueurs créés=====");
 
         Game game = new Game(player1, player2, grid);
@@ -134,13 +144,22 @@ public class Game {
      * @param scanner Scanner d'entrée
      */
     public void turn(Scanner scanner){
-        if(turn){
-            System.out.println("C'est au tour de " + Main.os.getYellow() + player1.getName() + Main.os.getReset() +" de jouer, veuillez placer un disque");
-            playing(scanner, player1.getDisk());
-            turn = false;
-        } else {
-            System.out.println("C'est au tour de " + Main.os.getRed() + player2.getName() + Main.os.getReset() + " de jouer, veuillez placer un disque");
-            playing(scanner, player2.getDisk());
+        if(turn){ //Yellow
+            if(player1.getAI() != null){
+                player1.getAI().executeAI(this, player1.getDisk());
+                turn = false;
+            } else {
+                System.out.println("C'est au tour de " + Main.os.getYellow() + player1.getName() + Main.os.getReset() +" de jouer, veuillez placer un disque");
+                playing(scanner, player1.getDisk());
+                turn = false;
+            }
+        } else { //Red
+            if(player2.getAI() != null){
+                player2.getAI().executeAI(this, player2.getDisk());
+            } else {
+                System.out.println("C'est au tour de " + Main.os.getRed() + player2.getName() + Main.os.getReset() + " de jouer, veuillez placer un disque");
+                playing(scanner, player2.getDisk());
+            }
             turn = true;
         }
     }
@@ -156,7 +175,7 @@ public class Game {
             if(index >= 1 && index <= grid.getWidth()){
                 if(!(isFull(index-1))){
                     place(index-1, disk);
-                    grid.decrementnbCoin();
+                    grid.decrementNbCoin();
                     break;
                 } else {
                     System.out.println(Main.os.getError() + "La colonne " + index + " est pleine, veuillez rechoisir votre colonne" + Main.os.getReset());
