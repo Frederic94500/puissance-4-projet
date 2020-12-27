@@ -13,7 +13,8 @@ Disponible [ici](https://upec.frederic94500.net/puissance-4/)
 
 ## Release
 
-Joueur contre joueur: [v1.0](https://s3.frederic94500.net/2020/12/puissance-4-1.0.jar)
+Joueur contre joueur: [v1.0](https://s3.frederic94500.net/2020/12/puissance-4-1.0.jar)<br>
+Joueur contre BogoIA: [v1.1](https://s3.frederic94500.net/2020/12/puissance-4-1.1.jar)
 
 ## Compilation - Génération Javadoc
 

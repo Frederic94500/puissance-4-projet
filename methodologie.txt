@@ -26,6 +26,16 @@ Déroulement:
 5 - Recommencer depuis 2
 6 - Annonce du gagnant ou non
 
+IA:
+Bogo = Codé
+MinMax = WIP
+AlphaBeta = Not started yet
+
+MinMax:
+1 - On crée l'arbre des possibilités, jusqu'à 3 à gauche (droite étant les possibilités sur chaque colonne)
+2 - On calcul le score de chaque noeud
+3 - On place en priorité sur le noeud où le score = numéro du joueur (via verify), si il n'y a rien: alors on place sur le premier choix 0, si c'est mort: alors on joue n'imp
+
 Source:
 Gitlab LACL -> push Github
 
