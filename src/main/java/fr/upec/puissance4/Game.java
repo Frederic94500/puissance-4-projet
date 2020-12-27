@@ -147,12 +147,11 @@ public class Game {
         if(turn){ //Yellow
             if(player1.getAI() != null){
                 player1.getAI().executeAI(this, player1.getDisk());
-                turn = false;
             } else {
                 System.out.println("C'est au tour de " + Main.os.getYellow() + player1.getName() + Main.os.getReset() +" de jouer, veuillez placer un disque");
                 playing(scanner, player1.getDisk());
-                turn = false;
             }
+            turn = false;
         } else { //Red
             if(player2.getAI() != null){
                 player2.getAI().executeAI(this, player2.getDisk());

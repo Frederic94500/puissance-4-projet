@@ -2,21 +2,27 @@ package fr.upec.puissance4;
 
 import java.util.Scanner;
 
+/**
+ * Classe IA/AI du puissance 4 - Gère le joueur ordinateur
+ * @author Frédéric TRAN - u21960418 - INFO G2A
+ * @author Tony TAVERNIER - u21808537 - INFO G2A
+ */
 public class AI {
     private int type;
 
+    /**
+     * Constructeur de IA
+     * @param type Le type de IA (0 = Bogo, 1 = Min/Max, 2 - α/β)
+     */
     public AI(int type){
         this.type = type;
     }
 
     /**
-     * 
-     * @return
+     * Crée le joueur IA avec son type de IA
+     * @param scanner Scanner d'entrée
+     * @return Retourne le type d'IA
      */
-    public int getType() {
-        return type;
-    }
-
     public static AI createAI(Scanner scanner){
         while(true){
             System.out.println("0 = BogoIA (Naif), 1 = Min/Max, 2 = α/β (Alpha/Beta)?");
@@ -29,6 +35,11 @@ public class AI {
         }
     }
 
+    /**
+     * Execute l'IA lors de son tour
+     * @param game Le jeu
+     * @param disk Le disque du IA
+     */
     public void executeAI(Game game, Coin disk){
         switch (type) {
             case 0:
@@ -43,14 +54,20 @@ public class AI {
         }
     }
 
-    public void printPlace(Game game, Coin disk, int index){
+    /**
+     * Annonce où l'IA a placé son disque
+     * @param game Le jeu
+     * @param disk Le disque du IA
+     * @param index La colonne choisie par l'IA
+     */
+    private void printPlace(Game game, Coin disk, int index){
         String s = "";
         switch (disk.getDisk()) {
             case YELLOW:
-                s += Main.os.getYellow() + "L'IA a placé sur la colonne " + index + Main.os.getReset();
+                s += Main.os.getYellow() + "L'IA a placé sur la colonne " + (index + 1) + Main.os.getReset();
                 break;
             case RED:
-                s += Main.os.getRed() + "L'IA a placé sur la colonne " + index + Main.os.getReset();
+                s += Main.os.getRed() + "L'IA a placé sur la colonne " + (index + 1) + Main.os.getReset();
                 break;
             case VOID:
                 break;
@@ -58,7 +75,12 @@ public class AI {
         System.out.println(s);
     }
 
-    public void bogo(Game game, Coin disk) {
+    /**
+     * L'IA place l'aléatoirement un disque sur une colonne
+     * @param game Le jeu
+     * @param disk Le disque du IA
+     */
+    private void bogo(Game game, Coin disk) {
         while(true){
             int random = (int)(Math.random() * game.getGrid().getWidth());
             if(!game.isFull(random)){
@@ -70,10 +92,20 @@ public class AI {
         }
     }
 
+    /**
+     * WIP
+     * @param game
+     * @param disk
+     */
     public void minMax(Game game, Coin disk) {
 
     }
 
+    /**
+     * WIP
+     * @param game
+     * @param disk
+     */
     public void alphaBeta(Game game, Coin disk) {
 
     }
