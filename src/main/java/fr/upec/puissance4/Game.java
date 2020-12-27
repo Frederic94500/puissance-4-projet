@@ -53,7 +53,7 @@ public class Game {
         System.out.println("Nom du joueur 1?");
         String name1 = scanner.next();
         AI ai1 = null;
-        if (name1.equals("IA") || name1.equals("AI")) {
+        if (name1.equals("IA") || name1.equals("AI") || name1.equals("ia") || name1.equals("ai")) {
             ai1 = AI.createAI(scanner);
         }
         Player player1 = new Player(new Coin(Coin.Disk.YELLOW), ai1, name1);
@@ -61,10 +61,10 @@ public class Game {
         System.out.println("Nom du joueur 2?");
         String name2 = scanner.next();
         AI ai2 = null;
-        if (name2.equals("IA") || name2.equals("AI")) {
+        if (name2.equals("IA") || name2.equals("AI") || name2.equals("ia") || name2.equals("ai")) {
             ai2 = AI.createAI(scanner);
         }
-        Player player2 = new Player(new Coin(Coin.Disk.YELLOW), ai2, name2);
+        Player player2 = new Player(new Coin(Coin.Disk.RED), ai2, name2);
         System.out.println("=====Joueurs créés=====");
 
         Game game = new Game(player1, player2, grid);
@@ -279,6 +279,10 @@ public class Game {
                 if(grid.getGrid().get(j).get(i).getDisk() == Coin.Disk.YELLOW){
                     red = 0;
                     yellow++;
+                }
+                if(grid.getGrid().get(j).get(i).getDisk() == Coin.Disk.VOID){
+                    red = 0;
+                    yellow = 0;
                 }
                 if(yellow == 4){
                     winner = 1;
