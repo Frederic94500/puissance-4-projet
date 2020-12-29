@@ -46,4 +46,12 @@ public class Coin {
     public Disk getDisk(){
         return disk;
     }
+
+    public Coin invert(Coin disk){
+        if(disk.disk == Disk.YELLOW){
+            return new Coin(Disk.RED);
+        } else {
+            return new Coin(Disk.YELLOW);
+        }
+    }
 }

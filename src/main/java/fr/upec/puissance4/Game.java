@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
-public class Game {
+public class Game implements Cloneable {
     private Player player1;
     private Player player2;
     private boolean turn; // A qui le tour? true = player 1 (Jaune), false = player 2 (Rouge)
@@ -32,6 +32,16 @@ public class Game {
      * @see fr.upec.puissance4.File#read(java.nio.file.Path)
      */
     public Game() {
+    }
+
+    @Override
+    protected Game clone() {
+        try {
+            Game cloned = (Game) super.clone();
+            return cloned;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

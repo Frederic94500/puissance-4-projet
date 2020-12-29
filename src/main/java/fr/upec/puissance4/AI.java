@@ -98,7 +98,9 @@ public class AI {
      * @param disk
      */
     public void minMax(Game game, Coin disk) {
-
+        Tree tree = Tree.createTreeProba(game, disk);
+        tree.computeScore(tree.getRoot());
+        tree.affichage_arbo();
     }
 
     /**
