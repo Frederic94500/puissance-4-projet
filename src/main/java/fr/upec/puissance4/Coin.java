@@ -47,7 +47,7 @@ public class Coin {
         return disk;
     }
 
-    public Coin invert(Coin disk){
+    public static Coin invert(Coin disk){
         if(disk.disk == Disk.YELLOW){
             return new Coin(Disk.RED);
         } else {

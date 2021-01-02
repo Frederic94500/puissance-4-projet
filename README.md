@@ -22,4 +22,4 @@ Joueur contre BogoIA: [v1.1](https://s3.frederic94500.net/2020/12/puissance-4-1.
 
 ## Exécution
 
-`java -jar target/puissance-4-1.1-SNAPSHOT.jar [fichier de partie]`
+`java -jar target/puissance-4-1.2-SNAPSHOT.jar [fichier de partie]`

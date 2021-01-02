@@ -1,12 +1,21 @@
-Méthodologie Puissance 4:
+=== EXECUTION ===
+
+java -jar puissance-4-1.?.jar [fichier de partie]
+
+=== DEPOTS ===
+
+GitLab = https://git-etudiants.lacl.fr/u21960418/puissance-4-projet
+GitHub = https://github.com/Frederic94500/puissance-4-projet
+
+=== METHODOLOGIE ===
 
 en argument: le fichier -> Si oui: charge la partie
 			Sinon: création de la partie
 			Sans argument: crée la partie
 
-méthode: ArrayList de ArrayList de Coin
+Méthode: ArrayList de ArrayList de Coin
 
-Enregistrement: colonne par colonne
+Enregistrement: colonne par colonne (géré par gson)
 
 0 0 0 ...
 1 1 1 
@@ -20,18 +29,19 @@ Lecture d'un fichier: géré par gson via la méthode fromJson() -> lit un fichi
 
 Déroulement:
 1 - Création de la partie ou lecture de la partie
-2 - Vérification de la partie s'il y a un gagnant, si oui, aller à 6, sinon continuer
+2 - Vérification de la partie s'il y a un gagnant, si oui, aller à 7, sinon continuer
 3 - A qui doit placer un disque
 4 - Affiche la grille
-5 - Recommencer depuis 2
-6 - Annonce du gagnant ou non
+5 - Enregistre la partie
+6 - Recommencer depuis 2
+7 - Annonce du gagnant ou non
 
 IA:
 Bogo = Codé
 MinMax = WIP
 AlphaBeta = Not started yet
 
-MinMax:
+MinMax (WIP):
 1 - On crée l'arbre des possibilités, jusqu'à 2 à gauche (droite étant les possibilités sur chaque colonne)
 2 - On calcul le score de chaque noeud
 3 - On place en priorité sur le noeud où le score = numéro du joueur (via verify), si il n'y a rien: alors on place sur le premier choix 0, si c'est mort: alors on joue n'imp
@@ -41,7 +51,16 @@ Gitlab LACL -> push Github
 
 Pour Frédéric: commit avec clé GPG
 
-Documentation:
+=== DIFFICULTEES ===
+
+1 - Impossibilité d'entrer la colonne, corrigé: 39e05fa426d42f68edd6769d0b3e513c7a549fcb
+2 - Vérification de la grille, corrigé: ce30acc9a1f70fb6e462544d0ded7e6678468f65
+3 - Ajout de la fonction de nettoyage, non implémenté à cause de la non-exécution sur Windows et Ubuntu: 41ad54433197d4ae8a07e11b5f6fa6ffaced182b
+4 - Création de l'arbre pour MinMax, en cours: SHA256
+5 - La copie fonctionne mal, en cours: SHA256
+
+=== DOCUMENTATION ===
+
 IA:
 https://www.developpez.net/forums/d916028/java/general-java/langage/cloner-objet/
 
