@@ -6,8 +6,6 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,7 +24,7 @@ public class File {
     public static void save(Game game) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        Writer writer = Files.newBufferedWriter(Paths.get("partie-" + DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now()) + ".json"));
+        Writer writer = Files.newBufferedWriter(Paths.get(game.getFileName()));
 
         gson.toJson(game, writer);
 

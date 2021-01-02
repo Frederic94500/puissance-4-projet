@@ -1,5 +1,7 @@
 package fr.upec.puissance4;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +10,8 @@ import java.util.Scanner;
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
-public class Game implements Cloneable {
+public class Game {
+    private String fileName;
     private Player player1;
     private Player player2;
     private boolean turn; // A qui le tour? true = player 1 (Jaune), false = player 2 (Rouge)
@@ -16,11 +19,13 @@ public class Game implements Cloneable {
 
     /**
      * Constructeur de la partie
+     * @param fileName Nom du fichier
      * @param player1 Joueur 1
      * @param player2 Joueur 2
      * @param grid Grille
      */
-    public Game(Player player1, Player player2, Grid grid) {
+    public Game(String fileName, Player player1, Player player2, Grid grid) {
+        this.fileName = fileName;
         this.player1 = player1;
         this.player2 = player2;
         this.turn = true;
@@ -34,22 +39,13 @@ public class Game implements Cloneable {
     public Game() {
     }
 
-    @Override
-    protected Game clone() {
-        try {
-            Game cloned = (Game) super.clone();
-            return cloned;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /**
      * Créée de la partie et renvoie la partie créée
+     * @param fileName Nom du fichier si il existe
      * @param scanner Scanner d'entrée
      * @return Retourne la partie créée
      */
-    public static Game createGame(Scanner scanner) {
+    public static Game createGame(Scanner scanner, String fileName) {
         System.out.println("=====Création de la partie=====");
 
         System.out.println("=====Création de la grille=====\nTaille de la grille, Largeur?");
@@ -77,10 +73,15 @@ public class Game implements Cloneable {
         Player player2 = new Player(new Coin(Coin.Disk.RED), ai2, name2);
         System.out.println("=====Joueurs créés=====");
 
-        Game game = new Game(player1, player2, grid);
         System.out.println("=====Partie créée!=====");
-
-        return game;
+        if(fileName.equals("")){
+            String name = "partie-" + DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now()) + ".json";
+            Game game = new Game(name, player1, player2, grid);
+            return game;
+        } else {
+            Game game = new Game(fileName, player1, player2, grid);
+            return game;
+        }
     }
 
     /**
@@ -110,6 +111,13 @@ public class Game implements Cloneable {
      */
     public Player getPlayer2() {
         return player2;
+    }
+    /**
+     * Retourne le nom du fichier de jeu
+     * @return Retourne le nom
+     */
+    public String getFileName() {
+        return fileName;
     }
 
     /**

@@ -1,26 +1,37 @@
 package fr.upec.puissance4;
 
+import java.io.IOException;
+import java.nio.file.Paths;
+
 public class Tree {
     private Node root;
 
-    public Tree(Node root){
+    public Tree(Node root) {
         this.root = root;
     }
-    public Tree(){
+
+    public Tree() {
     }
 
     public Node getRoot() {
         return root;
     }
 
-    public static Tree createTreeProba(Game game, Coin disk){
+    public static Tree createTreeProba(Game game, Coin disk) {
         Tree tree = new Tree();
-        tree.root = createTreeProbaRec(game, disk, game.getGrid().getWidth()-1, 2);
+        tree.root = createTreeProbaRec(game, disk, game.getGrid().getWidth() - 1, 2);
         return tree;
     }
-    public static Node createTreeProbaRec(Game game, Coin disk, int right, int left){
-        Node node = new Node(game.clone());
-        //node.getGame().place(right, disk);
+
+    public static Node createTreeProbaRec(Game game, Coin disk, int right, int left) {
+        Node node = null;
+        try {
+            node = new Node(File.read(Paths.get(game.getFileName())));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        node.getGame().place(right, disk);
         if(right == 0){
             return node;
         } else if (left == 0){

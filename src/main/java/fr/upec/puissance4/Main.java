@@ -20,7 +20,7 @@ public class Main{
 
         if(args.length == 0){
             System.out.println("Pas d'argument... Création de la partie");
-            game = Game.createGame(scanner);
+            game = Game.createGame(scanner, "");
             saving(game);
         } else {
             Path path = Paths.get(args[0]);
@@ -34,7 +34,7 @@ public class Main{
                 }
             } else {
                 System.out.println("Fichier inexistant, création de la partie");
-                game = Game.createGame(scanner);
+                game = Game.createGame(scanner, args[0]);
                 saving(game);
             }
         }

@@ -56,13 +56,13 @@ Pour Frédéric: commit avec clé GPG
 1 - Impossibilité d'entrer la colonne, corrigé: 39e05fa426d42f68edd6769d0b3e513c7a549fcb
 2 - Vérification de la grille, corrigé: ce30acc9a1f70fb6e462544d0ded7e6678468f65
 3 - Ajout de la fonction de nettoyage, non implémenté à cause de la non-exécution sur Windows et Ubuntu: 41ad54433197d4ae8a07e11b5f6fa6ffaced182b
-4 - Création de l'arbre pour MinMax, en cours: SHA256
-5 - La copie fonctionne mal, en cours: SHA256
+4 - Création de l'arbre pour MinMax, implémenté: 3603ab0850b97bcc7a785122d1cb9d1ad2a2ca8f
+5 - La copie fonctionne mal, implémenté via la lecture du fichier de partie: SHA256
 
 === DOCUMENTATION ===
 
 IA:
-https://www.developpez.net/forums/d916028/java/general-java/langage/cloner-objet/
+https://www.baeldung.com/java-deep-copy
 
 Gestion des couleurs:
 https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
