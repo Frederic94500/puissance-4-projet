@@ -1,5 +1,6 @@
 package fr.upec.puissance4;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -25,7 +26,7 @@ public class AI {
      */
     public static AI createAI(Scanner scanner){
         while(true){
-            System.out.println("0 = BogoIA (Naif), 1 = Min/Max, 2 = α/β (Alpha/Beta)?");
+            System.out.println("Le type de IA?\n0 = BogoIA (Naif), 1 = Min/Max, 2 = α/β (Alpha/Beta)?");
             int integer = Game.isInteger(scanner);
             if(integer >= 0 && integer <= 2){
                 return new AI(integer);
@@ -78,7 +79,7 @@ public class AI {
     /**
      * L'IA place l'aléatoirement un disque sur une colonne
      * @param game Le jeu
-     * @param disk Le disque du IA
+     * @param disk Le disque de l'IA
      */
     private void bogo(Game game, Coin disk) {
         while(true){
@@ -93,14 +94,28 @@ public class AI {
     }
 
     /**
-     * WIP
-     * @param game
-     * @param disk
+     * L'IA place un disque en fonction de l'arbre de possibilités.
+     * @param game Le jeu
+     * @param disk le disque de l'IA
      */
     public void minMax(Game game, Coin disk) {
-        Tree tree = Tree.createTreeProba(game, disk);
+        int index;
+
+        Tree tree = Tree.createTreePossib(game, disk);
         tree.computeScore(tree.getRoot());
-        tree.affichage_arbo();
+        if(tree.isBestScoreMax(tree.getRoot(), game.getGrid().getWidth())){ //Vérifie s'il y a un score > 0
+            index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, -1000, 100);
+        } else {
+            ArrayList<Integer> indexListZero = tree.listAllZero(tree.getRoot(), game.getGrid().getWidth() - 1, new ArrayList<Integer>());
+            while(true){
+                index = indexListZero.get((int)(Math.random() * (indexListZero.size())));
+                if(!game.isFull(index)){
+                    break;
+                }
+            }
+        }
+        game.place(index, disk);
+        printPlace(game, disk, index);
     }
 
     /**
