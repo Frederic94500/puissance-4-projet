@@ -96,12 +96,12 @@ public class Tree {
      * @param iter Iterateur 
      * @return Retourne un booléen
      */
-    public boolean isBestScoreMax(Node node, int iter){
-        if(iter >= 0){
+    public boolean isBestScoreMax(Node node){
+        if(node != null){
             if(node.getScore() > 0){
                 return true;
             } else {
-                return isBestScoreMax(node, iter - 1);
+                return isBestScoreMax(node.getRight());
             }
         }
         return false;
@@ -112,11 +112,11 @@ public class Tree {
      * @param node Le noeud
      * @param index L'index
      * @param max Le maximum atteint
-     * @param indexMax L'index où le maximum à été atteint
-     * @return Retourne l'index où le maximum à été atteint
+     * @param indexMax L'index où le maximum a été atteint
+     * @return Retourne l'index où le maximum a été atteint
      */
     public int bestScoreMax(Node node, int index, int max, int indexMax){
-        if(index >= 0){
+        if(node != null){
             if(node.getScore() > max){
                 max = node.getScore();
                 indexMax = index;
@@ -124,6 +124,41 @@ public class Tree {
             return bestScoreMax(node.getRight(), index - 1, max, indexMax);
         }
         return indexMax;
+    }
+
+    /**
+     * Vérifie s'il y a un score inférieur à 0 et renvoie un booléen
+     * @param node Le noeud
+     * @return Retourne un booléen
+     */
+    public boolean isWorstScoreMin(Node node){
+        if(node != null){
+            if(node.getScore() < 0){
+                return true;
+            } else {
+                return isWorstScoreMin(node.getRight());
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Trouve et retourne l'index du score le plus bas
+     * @param node Le noeud
+     * @param index L'index
+     * @param min Le minimum atteint
+     * @param indexMin L'index où le minimum a été atteint
+     * @return Retourne l'index où le minimum a été atteint
+     */
+    public int worstScoreMin(Node node, int index, int min, int indexMin){
+        if(node != null){
+            if(node.getScore() < min){
+                min = node.getScore();
+                indexMin = index;
+            }
+            return worstScoreMin(node.getRight(), index - 1, min, indexMin);
+        }
+        return indexMin;
     }
 
     /**

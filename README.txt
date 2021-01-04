@@ -46,7 +46,8 @@ MinMax (WIP):
 2 - On calcul le score de chaque noeud
 3 - On remonte le score des noeuds gauche
 4 - On calcul: négatif = défavorable, 0 = nul, positif = favorable
-5 - On place en priorité sur le noeud où le score est postif, si il n'y a rien: alors on place sur la liste de choix 0, si c'est mort: alors on joue n'imp
+5 - On place en priorité sur le noeud où le score est postif, sinon, si le score est négatif, on bloque la colonne où l'IA perd,
+	si il n'y a rien: alors on place sur la liste de choix 0.
 
 Source:
 Gitlab LACL -> push Github
@@ -62,8 +63,9 @@ Chaque difficultées sont indiqués avec un numéro du commit où la correction 
 3 - Ajout de la fonction de nettoyage, non implémenté à cause de la non-exécution sur Windows et Ubuntu: 41ad54433197d4ae8a07e11b5f6fa6ffaced182b
 4 - Création de l'arbre pour MinMax, implémenté: 3603ab0850b97bcc7a785122d1cb9d1ad2a2ca8f
 5 - (Obsolète, voir 7)La copie fonctionne mal, implémenté via la lecture du fichier de partie: 943e1e6da0760ee075538b3401c7211659ab4e60
-6 - Remonter le score à travers l'arbre, codé: SHA256
-7 - La copie ne fonctionne pas pour les autres possibilités, copie profonde via gson vu qu'il ne copie pas les références: SHA256
+6 - Remonter le score à travers l'arbre, codé: bc6e8e62c60d3b2dd6e5b5b9853b44effbdc2949
+7 - La copie ne fonctionne pas pour les autres possibilités, copie profonde via gson vu qu'il ne copie pas les références: bc6e8e62c60d3b2dd6e5b5b9853b44effbdc2949
+8 - A un moment, l'IA ne place plus de disque: il se bloque, en cours: SHA
 
 === DOCUMENTATION ===
 

@@ -103,8 +103,11 @@ public class AI {
 
         Tree tree = Tree.createTreePossib(game, disk);
         tree.computeScore(tree.getRoot());
-        if(tree.isBestScoreMax(tree.getRoot(), game.getGrid().getWidth())){ //Vérifie s'il y a un score > 0
+        
+        if (tree.isBestScoreMax(tree.getRoot())){ //Vérifie s'il y a un score > 0
             index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, -1000, 100);
+        } else if (tree.isWorstScoreMin(tree.getRoot())){ //Vérifie s'il y a un score < 0
+            index = tree.worstScoreMin(tree.getRoot(), game.getGrid().getWidth() - 1, 1000, 100);
         } else {
             ArrayList<Integer> indexListZero = tree.listAllZero(tree.getRoot(), game.getGrid().getWidth() - 1, new ArrayList<Integer>());
             while(true){
