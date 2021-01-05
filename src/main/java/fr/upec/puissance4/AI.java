@@ -61,14 +61,14 @@ public class AI {
      * @param disk Le disque du IA
      * @param index La colonne choisie par l'IA
      */
-    private void printPlace(Game game, Coin disk, int index){
+    private void printPlace(Game game, Coin disk, int index, String score){
         String s = "";
         switch (disk.getDisk()) {
             case YELLOW:
-                s += Main.os.getYellow() + "L'IA a placé sur la colonne " + (index + 1) + Main.os.getReset();
+                s += Main.os.getYellow() + "L'IA a placé sur la colonne " + (index + 1) + " " + score + Main.os.getReset();
                 break;
             case RED:
-                s += Main.os.getRed() + "L'IA a placé sur la colonne " + (index + 1) + Main.os.getReset();
+                s += Main.os.getRed() + "L'IA a placé sur la colonne " + (index + 1) + " " + score + Main.os.getReset();
                 break;
             case VOID:
                 break;
@@ -87,7 +87,7 @@ public class AI {
             if(!game.isFull(random)){
                 game.place(random, disk);
                 game.getGrid().decrementNbCoin();
-                printPlace(game, disk, random);
+                printPlace(game, disk, random, "");
                 break;
             }
         }
@@ -106,9 +106,9 @@ public class AI {
         
         if (tree.isBestScoreMax(tree.getRoot())){ //Vérifie s'il y a un score > 0
             index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, -1000, 100);
-        } else if (tree.isWorstScoreMin(tree.getRoot())){ //Vérifie s'il y a un score < 0
+        } /*else if (tree.isWorstScoreMin(tree.getRoot())){ //Vérifie s'il y a un score < 0
             index = tree.worstScoreMin(tree.getRoot(), game.getGrid().getWidth() - 1, 1000, 100);
-        } else {
+        }*/ else {
             ArrayList<Integer> indexListZero = tree.listAllZero(tree.getRoot(), game.getGrid().getWidth() - 1, new ArrayList<Integer>());
             while(true){
                 index = indexListZero.get((int)(Math.random() * (indexListZero.size())));
@@ -118,7 +118,7 @@ public class AI {
             }
         }
         game.place(index, disk);
-        printPlace(game, disk, index);
+        printPlace(game, disk, index, "(score: "+ Integer.toString(tree.searchIndexScore(tree.getRoot(), game.getGrid().getWidth() - 1, index)) + ")");
     }
 
     /**

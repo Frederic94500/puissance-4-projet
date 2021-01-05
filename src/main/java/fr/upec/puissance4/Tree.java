@@ -178,4 +178,11 @@ public class Tree {
         }
         return list;
     }
+
+    public int searchIndexScore(Node node, int index, int indexTBF){ //TBF = To Be Found
+        if(index == indexTBF){
+            return node.getScore();
+        }
+        return searchIndexScore(node.getRight(), index - 1, indexTBF);
+    }
 }
