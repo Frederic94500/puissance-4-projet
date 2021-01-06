@@ -54,7 +54,7 @@ Gitlab LACL -> push Github
 
 Pour Frédéric: commit avec clé GPG
 
-=== DIFFICULTEES ===
+=== DIFFICULTES ===
 
 Chaque difficultées sont indiqués avec un numéro du commit où la correction a été faite
 
@@ -65,7 +65,7 @@ Chaque difficultées sont indiqués avec un numéro du commit où la correction 
 5 - (Obsolète, voir 7)La copie fonctionne mal, implémenté via la lecture du fichier de partie: 943e1e6da0760ee075538b3401c7211659ab4e60
 6 - Remonter le score à travers l'arbre, codé: bc6e8e62c60d3b2dd6e5b5b9853b44effbdc2949
 7 - La copie ne fonctionne pas pour les autres possibilités, copie profonde via gson vu qu'il ne copie pas les références: bc6e8e62c60d3b2dd6e5b5b9853b44effbdc2949
-8 - A un moment, l'IA ne place plus de disque: il se bloque, en cours: SHA
+8 - A un moment, l'IA ne place plus de disque: il se bloque quand l'adversaire va bientôt gagner (score négatif), commenté, non implémenté à cause d'un bug assez étrange: SHA
 
 === DOCUMENTATION ===
 

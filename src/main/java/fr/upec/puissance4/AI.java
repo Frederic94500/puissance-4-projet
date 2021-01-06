@@ -26,18 +26,18 @@ public class AI {
      */
     public static AI createAI(Scanner scanner){
         while(true){
-            System.out.println("Le type de IA?\n0 = BogoIA (Naif), 1 = Min/Max, 2 = α/β (Alpha/Beta)?");
+            System.out.println("Le type de IA?\n0 = BogoIA (Naif), 1 = Min/Max?");
             int integer = Game.isInteger(scanner);
-            if(integer >= 0 && integer <= 2){
+            if(integer >= 0 && integer <= 1){
                 return new AI(integer);
             } else {
-                System.out.println(Main.os.getError() + "Veuillez entrer un nombre entre 0 et 2" + Main.os.getReset());
+                System.out.println(Main.os.getError() + "Veuillez entrer un nombre entre 0 et 1" + Main.os.getReset());
             }
         }
     }
 
     /**
-     * Execute l'IA lors de son tour
+     * Execute l'IA lors de son tour en fonction de son type
      * @param game Le jeu
      * @param disk Le disque du IA
      */
@@ -49,10 +49,8 @@ public class AI {
             case 1:
                 minMax(game, disk);
                 break;
-            case 2:
-                alphaBeta(game, disk);
-                break;
         }
+        game.getGrid().decrementNbCoin();
     }
 
     /**
@@ -86,7 +84,6 @@ public class AI {
             int random = (int)(Math.random() * game.getGrid().getWidth());
             if(!game.isFull(random)){
                 game.place(random, disk);
-                game.getGrid().decrementNbCoin();
                 printPlace(game, disk, random, "");
                 break;
             }
@@ -98,15 +95,15 @@ public class AI {
      * @param game Le jeu
      * @param disk le disque de l'IA
      */
-    public void minMax(Game game, Coin disk) {
+    private void minMax(Game game, Coin disk) {
         int index;
 
         Tree tree = Tree.createTreePossib(game, disk);
         tree.computeScore(tree.getRoot());
         
         if (tree.isBestScoreMax(tree.getRoot())){ //Vérifie s'il y a un score > 0
-            index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, -1000, 100);
-        } /*else if (tree.isWorstScoreMin(tree.getRoot())){ //Vérifie s'il y a un score < 0
+            index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, 0, 100);
+        } /*else if (tree.isWorstScoreMin(tree.getRoot())){ //Vérifie s'il y a un score < 0 //Ne fonctionne pas
             index = tree.worstScoreMin(tree.getRoot(), game.getGrid().getWidth() - 1, 1000, 100);
         }*/ else {
             ArrayList<Integer> indexListZero = tree.listAllZero(tree.getRoot(), game.getGrid().getWidth() - 1, new ArrayList<Integer>());
@@ -119,14 +116,5 @@ public class AI {
         }
         game.place(index, disk);
         printPlace(game, disk, index, "(score: "+ Integer.toString(tree.searchIndexScore(tree.getRoot(), game.getGrid().getWidth() - 1, index)) + ")");
-    }
-
-    /**
-     * WIP
-     * @param game
-     * @param disk
-     */
-    public void alphaBeta(Game game, Coin disk) {
-
     }
 }

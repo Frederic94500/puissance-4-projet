@@ -56,7 +56,7 @@ public class Game {
         System.out.println("=====Grille créée=====");
 
         System.out.println("=====Création des joueurs=====");
-        System.out.println("Nom du joueur 1?");
+        System.out.println("Nom du joueur 1? (IA/AI/ia/ai pour ordinateur)");
         String name1 = scanner.next();
         AI ai1 = null;
         if (name1.equals("IA") || name1.equals("AI") || name1.equals("ia") || name1.equals("ai")) {
@@ -64,7 +64,7 @@ public class Game {
         }
         Player player1 = new Player(new Coin(Coin.Disk.YELLOW), ai1, name1);
 
-        System.out.println("Nom du joueur 2?");
+        System.out.println("Nom du joueur 2? (IA/AI/ia/ai pour ordinateur)");
         String name2 = scanner.next();
         AI ai2 = null;
         if (name2.equals("IA") || name2.equals("AI") || name2.equals("ia") || name2.equals("ai")) {
@@ -163,17 +163,17 @@ public class Game {
      */
     public void turn(Scanner scanner){
         if(turn){ //Yellow
-            if(player1.getAI() != null){
+            if(player1.getAI() != null){ //IA
                 player1.getAI().executeAI(this, player1.getDisk());
-            } else {
+            } else { //Joueur
                 System.out.println("C'est au tour de " + Main.os.getYellow() + player1.getName() + Main.os.getReset() +" de jouer, veuillez placer un disque");
                 playing(scanner, player1.getDisk());
             }
             turn = false;
         } else { //Red
-            if(player2.getAI() != null){
+            if(player2.getAI() != null){ //IA
                 player2.getAI().executeAI(this, player2.getDisk());
-            } else {
+            } else { //Joueur
                 System.out.println("C'est au tour de " + Main.os.getRed() + player2.getName() + Main.os.getReset() + " de jouer, veuillez placer un disque");
                 playing(scanner, player2.getDisk());
             }

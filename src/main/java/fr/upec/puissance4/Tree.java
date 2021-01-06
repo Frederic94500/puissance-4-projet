@@ -57,7 +57,9 @@ public class Tree {
         }
         node.computeScore(player);
 
-        if(right == 0){
+        if(node.getScore() != 0){
+            return node;
+        } else if (right == 0) {
             return node;
         } else if (left == 0){
             node.setRight(createTreePossibRec(gson, gameJSON, disk, player, right - 1, 0));
@@ -130,6 +132,7 @@ public class Tree {
      * Vérifie s'il y a un score inférieur à 0 et renvoie un booléen
      * @param node Le noeud
      * @return Retourne un booléen
+     * @deprecated N'est pas utilisé à cause d'un bug où il se bloque lorsque l'IA perd (score négatif)
      */
     public boolean isWorstScoreMin(Node node){
         if(node != null){
@@ -149,10 +152,11 @@ public class Tree {
      * @param min Le minimum atteint
      * @param indexMin L'index où le minimum a été atteint
      * @return Retourne l'index où le minimum a été atteint
+     * @deprecated N'est pas utilisé à cause d'un bug où il se bloque lorsque l'IA perd (score négatif)
      */
     public int worstScoreMin(Node node, int index, int min, int indexMin){
         if(node != null){
-            if(node.getScore() < min){
+            if(node.getScore() <= min){
                 min = node.getScore();
                 indexMin = index;
             }

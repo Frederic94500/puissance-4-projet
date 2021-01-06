@@ -21,14 +21,17 @@ public class File {
      * @param game La partie à enregistrer
      * @throws IOException Echec d'écriture 
      */
-    public static void save(Game game) throws IOException {
+    public static void save(Game game) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        Writer writer = Files.newBufferedWriter(Paths.get(game.getFileName()));
-
-        gson.toJson(game, writer);
-
-        writer.close();
+        try {
+            Writer writer = Files.newBufferedWriter(Paths.get(game.getFileName()));
+            gson.toJson(game, writer);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     /**
