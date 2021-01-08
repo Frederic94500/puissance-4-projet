@@ -319,7 +319,7 @@ public class Game {
      */
     private int verifyDiagAcc(){
         int winner = 0;
-        for (int i = 0; i <= grid.getGrid().get(i).size()-4; i++) { 
+        for (int i = 0; i < grid.getGrid().get(i).size()-4; i++) { 
             for (int j = 0; j <= grid.getGrid().size()-4; j++) {
                 int red = 0;
                 int yellow = 0;

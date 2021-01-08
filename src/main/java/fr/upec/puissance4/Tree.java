@@ -34,10 +34,10 @@ public class Tree {
      * @param disk Le disque de l'IA
      * @return Retourne l'arbre
      */
-    public static Tree createTreePossib(Game game, Coin disk) {
+    public static Tree createTreePossib(Game game, Coin disk, boolean minmax) {
         Gson gson = new Gson();
         String gameJSON = gson.toJson(game); //Traduction du jeu en JSON pour la copie
-        Tree tree = new Tree(createTreePossibRec(gson, gameJSON, disk, game.getTurn(), game.getGrid().getWidth() - 1, 2)); //2 en left car 2 profondeurs (IA -> Joueur -> IA)
+        Tree tree = new Tree(createTreePossibRec(gson, gameJSON, disk, game.getTurn(), minmax, game.getGrid().getWidth() - 1, 2)); //2 en left car 2 profondeurs (IA -> Joueur -> IA)
         return tree;
     }
     /**
@@ -50,46 +50,28 @@ public class Tree {
      * @param left La profondeur
      * @return Le noeud créé
      */
-    private static Node createTreePossibRec(Gson gson, String gameJSON, Coin disk, boolean player, int right, int left) {
+    private static Node createTreePossibRec(Gson gson, String gameJSON, Coin disk, boolean player, boolean minmax, int right, int left) {
         Node node = new Node(gson.fromJson(gameJSON, Game.class)); //Copie via gson
         if(!node.getGame().isFull(right)){
             node.getGame().place(right, disk); //Simule un placement
         }
-        node.computeScore(player);
+        if(minmax){
+            node.computeMinMaxScore(node, disk);;
+        } else {
+            node.computeCustomScore(player);
+        }
 
         if(node.getScore() != 0){
             return node;
         } else if (right == 0) {
             return node;
         } else if (left == 0){
-            node.setRight(createTreePossibRec(gson, gameJSON, disk, player, right - 1, 0));
+            node.setRight(createTreePossibRec(gson, gameJSON, disk, player, minmax, right - 1, 0));
         } else {
-            node.setLeft(createTreePossibRec(gson, gson.toJson(node.getGame()), Coin.invert(disk), player, node.getGame().getGrid().getWidth() - 1, left - 1));
-            node.setRight(createTreePossibRec(gson, gameJSON, disk, player, right - 1, left));
+            node.setLeft(createTreePossibRec(gson, gson.toJson(node.getGame()), Coin.invert(disk), player, minmax, node.getGame().getGrid().getWidth() - 1, left - 1));
+            node.setRight(createTreePossibRec(gson, gameJSON, disk, player, minmax, right - 1, left));
         }
         return node;
-    }
-
-    /**
-     * Calcul le score d'un noeud et de ces sous-jacents puis enregistre le total dans le noeud 
-     * @param node Le noeud
-     */
-    public void computeScore(Node node){
-        if(node != null){
-            node.setScore(node.getScore() + computeScoreRec(node.getLeft()));
-            computeScore(node.getRight()); //Calcul pour le prochain droite
-        }
-    }
-    /**
-     * Calcul le score d'un noeud et retourne le score
-     * @param node Le noeud
-     * @return Retourne le score
-     */
-    private int computeScoreRec(Node node){
-        if(node != null){
-            return node.getScore() + computeScoreRec(node.getLeft()) + computeScoreRec(node.getRight());
-        }
-        return 0;
     }
 
     /**
@@ -183,6 +165,13 @@ public class Tree {
         return list;
     }
 
+    /**
+     * Recherche le score d'un index
+     * @param node Le noeud
+     * @param index L'index
+     * @param indexTBF L'index a trouver
+     * @return Retounre le score
+     */
     public int searchIndexScore(Node node, int index, int indexTBF){ //TBF = To Be Found
         if(index == indexTBF){
             return node.getScore();

@@ -13,7 +13,7 @@ public class AI {
 
     /**
      * Constructeur de IA
-     * @param type Le type de IA (0 = Bogo, 1 = Min/Max, 2 - α/β)
+     * @param type Le type de IA (0 = Bogo, 1 = Min/Max)
      */
     public AI(int type){
         this.type = type;
@@ -26,12 +26,12 @@ public class AI {
      */
     public static AI createAI(Scanner scanner){
         while(true){
-            System.out.println("Le type de IA?\n0 = BogoIA (Naif), 1 = Min/Max?");
+            System.out.println("Le type de IA?\n0 = BogoIA (Naif), 1 = Min/Max, 2 = Custom?");
             int integer = Game.isInteger(scanner);
-            if(integer >= 0 && integer <= 1){
+            if(integer >= 0 && integer <= 2){
                 return new AI(integer);
             } else {
-                System.out.println(Main.os.getError() + "Veuillez entrer un nombre entre 0 et 1" + Main.os.getReset());
+                System.out.println(Main.os.getError() + "Veuillez entrer un nombre entre 0 et 2" + Main.os.getReset());
             }
         }
     }
@@ -48,6 +48,9 @@ public class AI {
                 break;
             case 1:
                 minMax(game, disk);
+                break;
+            case 2:
+                customIA(game, disk);
                 break;
         }
         game.getGrid().decrementNbCoin();
@@ -90,16 +93,27 @@ public class AI {
         }
     }
 
+    private void minMax(Game game, Coin disk){
+        int index;
+
+        Tree tree = Tree.createTreePossib(game, disk, true);
+        ComputeIA.computeMinMaxScore(tree.getRoot(), game.getGrid().getWidth() - 1, 2);
+        index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, 0, 100);
+
+        game.place(index, disk);
+        printPlace(game, disk, index, "(score: "+ Integer.toString(tree.searchIndexScore(tree.getRoot(), game.getGrid().getWidth() - 1, index)) + ")");
+    }
+
     /**
      * L'IA place un disque en fonction de l'arbre de possibilités.
      * @param game Le jeu
      * @param disk le disque de l'IA
      */
-    private void minMax(Game game, Coin disk) {
+    private void customIA(Game game, Coin disk) {
         int index;
 
-        Tree tree = Tree.createTreePossib(game, disk);
-        tree.computeScore(tree.getRoot());
+        Tree tree = Tree.createTreePossib(game, disk, false);
+        ComputeIA.computeCustomScore(tree.getRoot());
         
         if (tree.isBestScoreMax(tree.getRoot())){ //Vérifie s'il y a un score > 0
             index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, 0, 100);

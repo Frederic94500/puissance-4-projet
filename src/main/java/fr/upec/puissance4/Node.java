@@ -1,7 +1,10 @@
 package fr.upec.puissance4;
 
+import java.util.ArrayList;
+
 /**
  * Classe Node du puissance 4 - Représente un noeud de l'arbre
+ * 
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
@@ -17,7 +20,7 @@ public class Node {
      */
     public Node(Game game){
         this.game = game;
-        this.score = -1;
+        this.score = 0;
         this.right = null;
         this.left = null;
     }
@@ -78,7 +81,7 @@ public class Node {
      * @param player
      * @see fr.upec.puissance4.Game#verify()
      */
-    public void computeScore(boolean player){
+    public void computeCustomScore(boolean player){
         if(player){
             switch (game.verify()) {
                 case 0:
@@ -102,6 +105,88 @@ public class Node {
                 case 2:
                     score = 100;
                     break;
+            }
+        }
+    }
+
+    /**
+     * Calcul le score d'un noeud
+     * @param node Le noeud
+     * @param disk Le disque du joueur
+     */
+    public void computeMinMaxScore(Node node, Coin disk){
+        score = 0;
+        //Verticale
+        for(ArrayList<Coin> vert : game.getGrid().getGrid()){
+            int yourDisk = 0;
+            for(Coin coin : vert){
+                if(coin == disk){
+                    yourDisk++;
+                } else if(coin != disk){
+                    if(yourDisk >= 3){
+                        score += yourDisk;
+                        yourDisk = 0;
+                    }
+                }
+            }
+            if(yourDisk >= 3){
+                score += yourDisk;
+            }
+        }
+        //Horizontale
+        for(int i = 0; i < node.getGame().getGrid().getGrid().get(0).size()-1; i++){
+            int yourDisk = 0;
+            for(int j = 0; j < node.getGame().getGrid().getGrid().size(); j++){
+                if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() == disk.getDisk()){
+                    yourDisk++;
+                } else if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() != disk.getDisk()){
+                    if(yourDisk >= 3){
+                        score += yourDisk;
+                        yourDisk = 0;
+                    }
+                }
+            }
+            if(yourDisk >= 3){
+                score += yourDisk;
+            }
+        }
+        //Diagonale ascendante
+        for (int i = 0; i <= node.getGame().getGrid().getGrid().get(i).size()-4; i++) { 
+            for (int j = 0; j <= node.getGame().getGrid().getGrid().size()-4; j++) {
+                int yourDisk = 0;
+                for (int k = 0; k < 4; k++) {
+                    if(node.getGame().getGrid().getGrid().get(j+k).get(i+k).getDisk() == disk.getDisk()){
+                        yourDisk++;
+                    } else if(node.getGame().getGrid().getGrid().get(j+k).get(i+k).getDisk() != disk.getDisk()){
+                        if(yourDisk >= 3){
+                            score += yourDisk;
+                            yourDisk = 0;
+                        }
+                    }
+                }
+                if(yourDisk >= 3){
+                    score += yourDisk;
+                }
+            }
+        }
+        //Diagonale descendante
+        for (int i = 3; i < node.getGame().getGrid().getGrid().get(0).size(); i++) { 
+            for (int j = 0; j <= node.getGame().getGrid().getGrid().size()-4; j++) {
+                int yourDisk = 0;
+                for (int k = 0; k < 4; k++) {
+                    if(node.getGame().getGrid().getGrid().get(j+k).get(i-k).getDisk() == disk.getDisk()){
+                        yourDisk++;
+                    }
+                    if(node.getGame().getGrid().getGrid().get(j+k).get(i-k).getDisk() != disk.getDisk()){
+                        if(yourDisk >= 3){
+                            score += yourDisk;
+                            yourDisk = 0;
+                        }
+                    }
+                }
+                if(yourDisk >= 3){
+                    score += yourDisk;
+                }
             }
         }
     }
