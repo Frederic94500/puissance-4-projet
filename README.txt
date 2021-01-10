@@ -19,6 +19,13 @@ https://upec.frederic94500.net/puissance-4/
 GitLab UPEC = https://git-etudiants.lacl.fr/u21960418/puissance-4-projet
 GitHub = https://github.com/Frederic94500/puissance-4-projet
 
+=== AVANCEMENT ===
+
+Joueur vs joueur: codé
+IA naïve: codé
+IA MinMax: partiellement, buggé
+IA AlphaBeta: non commencé
+
 === METHODOLOGIE ===
 
 En argument: le fichier -> Si oui: charge la partie
