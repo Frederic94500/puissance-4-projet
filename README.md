@@ -14,7 +14,8 @@ Disponible [ici](https://upec.frederic94500.net/puissance-4/)
 ## Release
 
 Joueur contre joueur: [v1.0](https://s3.frederic94500.net/2020/12/puissance-4-1.0.jar)<br>
-Joueur contre BogoIA: [v1.1](https://s3.frederic94500.net/2020/12/puissance-4-1.1.jar)
+Joueur contre BogoIA: [v1.1](https://s3.frederic94500.net/2020/12/puissance-4-1.1.jar)<br>
+Joueur contre IA MinMax et Customisé: [v1.2](https://s3.frederic94500.net/2021/01/puissance-4-1.2.jar)
 
 ## Compilation - Génération Javadoc
 
@@ -22,4 +23,4 @@ Joueur contre BogoIA: [v1.1](https://s3.frederic94500.net/2020/12/puissance-4-1.
 
 ## Exécution
 
-`java -jar target/puissance-4-1.2-SNAPSHOT.jar [fichier de partie]`
+`java -jar target/puissance-4-1.2.jar [fichier de partie]`

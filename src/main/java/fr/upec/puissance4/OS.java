@@ -1,17 +1,18 @@
 package fr.upec.puissance4;
 
 /**
- * Classe OS du puissance 4 Contient les couleurs, ATTENTION: NE FONCTIONNE QUE SUR TERMINAUX UNIX ET LINUX
+ * Classe OS du puissance 4 - Contient les couleurs, ATTENTION: NE FONCTIONNE QUE SUR TERMINAUX UNIX ET LINUX
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
 public class OS {
     private String red = "\u001B[31m";
     private String yellow = "\u001B[33m";
+    private String cyan = "\u001B[36m";
     private String error = "\u001B[41m";
     private String reset = "\u001B[0m";
 
-    private String os;
+    private final String os = System.getProperty("os.name");
 
     /**
      * Constructeur de OS, contruit en fonction du système d'exploitation,
@@ -19,13 +20,21 @@ public class OS {
      * Sinon, on reste sur les paramètres définis.
      */
     public OS() {
-        this.os = System.getProperty("os.name");
         if (os.startsWith("Windows")) {
             this.red = "";
             this.yellow = "";
+            this.cyan = "";
             this.reset = "";
             this.error = "";
         }
+    }
+
+    /**
+     * Retourne le code couleur rouge
+     * @return Retourne le rouge
+     */
+    public String getRed() {
+        return red;
     }
 
     /**
@@ -37,11 +46,11 @@ public class OS {
     }
 
     /**
-     * Retourne le code couleur rouge
-     * @return Retourne le rouge
+     * Retourne le code couleur cyan
+     * @return Retourne le cyan
      */
-    public String getRed() {
-        return red;
+    public String getCyan() {
+        return cyan;
     }
 
     /**

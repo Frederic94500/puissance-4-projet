@@ -1,15 +1,27 @@
 === EXECUTION ===
 
-java -jar puissance-4-1.?.jar [fichier de partie]
+java -jar puissance-4-1.2.jar [fichier de partie]
+
+=== EXECUTION DEPUIS LE CODE SOURCE + GENERATION DU JAVADOC (Nécessite Maven)===
+
+mvn clean package javadoc:javadoc
+
+java -jar puissance-4-1.2.jar [fichier de partie]
+
+Javadoc disponible sur target/site/apidocs/
+
+=== JAVADOC EN LIGNE ===
+
+https://upec.frederic94500.net/puissance-4/
 
 === DEPOTS ===
 
-GitLab = https://git-etudiants.lacl.fr/u21960418/puissance-4-projet
+GitLab UPEC = https://git-etudiants.lacl.fr/u21960418/puissance-4-projet
 GitHub = https://github.com/Frederic94500/puissance-4-projet
 
 === METHODOLOGIE ===
 
-en argument: le fichier -> Si oui: charge la partie
+En argument: le fichier -> Si oui: charge la partie
 			Sinon: création de la partie
 			Sans argument: crée la partie
 
@@ -38,21 +50,22 @@ Déroulement:
 
 IA:
 Bogo = Codé
-MinMax = WIP
+MinMax = WIP (buggé)
+Customisé = Codé
 AlphaBeta = Not started yet
 
-MinMax (WIP):
-1 - On crée l'arbre des possibilités, jusqu'à 2 à gauche (droite étant les possibilités sur chaque colonne)
+Customisé:
+1 - On crée l'arbre des possibilités, jusqu'à 4 à gauche (droite étant les possibilités sur chaque colonne)
 2 - On calcul le score de chaque noeud
 3 - On remonte le score des noeuds gauche
 4 - On calcul: négatif = défavorable, 0 = nul, positif = favorable
-5 - On place en priorité sur le noeud où le score est postif, sinon, si le score est négatif, on bloque la colonne où l'IA perd,
-	si il n'y a rien: alors on place sur la liste de choix 0.
+5 - On place en priorité sur le noeud où le score est postif, sinon, si il n'y a rien: alors on place sur la liste de choix 0 (Le négatif est buggé).
 
-Source:
-Gitlab LACL -> push Github
-
-Pour Frédéric: commit avec clé GPG
+MinMax: (Buggé)
+1 - Création de l'arbre des possiblités, 4 de profondeurs
+2 - Calcul de score de chaque noeud
+3 - On remonte le score: adversaire: on prend le score le plus petit, IA: on prend le score le plus grand de l'adversaire
+4 - On récupère le score le plus grand et on place
 
 === DIFFICULTES ===
 
@@ -66,35 +79,31 @@ Chaque difficultées sont indiqués avec un numéro du commit où la correction 
 6 - Remonter le score à travers l'arbre, codé: bc6e8e62c60d3b2dd6e5b5b9853b44effbdc2949
 7 - La copie ne fonctionne pas pour les autres possibilités, copie profonde via gson vu qu'il ne copie pas les références: bc6e8e62c60d3b2dd6e5b5b9853b44effbdc2949
 8 - A un moment, l'IA ne place plus de disque: il se bloque quand l'adversaire va bientôt gagner (score négatif), commenté: non implémenté à cause d'un bug assez étrange: 65421c2e890b821fc34bea89bf90472fa4625eae
-9 - MinMax totalement bloqué sur la colonne 7, en cours: SHA
+9 - MinMax totalement bloqué sur la colonne 7, non corrigé.
 
 === DOCUMENTATION ===
-
-IA:
-https://www.baeldung.com/java-deep-copy
 
 Gestion des couleurs:
 https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 https://stackoverflow.com/questions/228477/how-do-i-programmatically-determine-operating-system-in-java
 
 Gson:
-https://attacomsian.com/blog/gson-write-json-file
 https://github.com/google/gson
+https://attacomsian.com/blog/gson-write-json-file
 https://www.javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/module-summary.html
 
-Manipulation
+ArrayList:
 https://www.geeksforgeeks.org/arraylist-of-arraylist-in-java/
-https://stackoverflow.com/questions/7833689/java-string-new-line
 https://www.w3schools.com/java/java_arraylist.asp
+
+Manipulation:
+https://stackoverflow.com/questions/7833689/java-string-new-line
 https://www.w3schools.com/java/java_enums.asp
 https://www.w3schools.com/java/java_switch.asp
 https://www.javatpoint.com/java-get-current-date
+https://www.baeldung.com/java-deep-copy
 
 Maven:
 https://maven.apache.org/guides/getting-started/
 https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html
 https://openclassrooms.com/fr/courses/4503526-organisez-et-packagez-une-application-java-avec-apache-maven/4608897-creez-votre-premier-projet-maven
-
-Screenshot du cours:
-https://s3.frederic94500.net/2020/11/36ibC.png
-https://s3.frederic94500.net/2020/11/6q4PP.png

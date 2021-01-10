@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 /**
  * Classe Node du puissance 4 - Représente un noeud de l'arbre
- * 
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
@@ -110,7 +109,7 @@ public class Node {
     }
 
     /**
-     * Calcul le score d'un noeud
+     * Calcul le score d'un noeud par l'alignement de disque
      * @param node Le noeud
      * @param disk Le disque du joueur
      */

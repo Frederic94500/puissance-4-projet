@@ -37,7 +37,7 @@ public class Tree {
     public static Tree createTreePossib(Game game, Coin disk, boolean minmax) {
         Gson gson = new Gson();
         String gameJSON = gson.toJson(game); //Traduction du jeu en JSON pour la copie
-        Tree tree = new Tree(createTreePossibRec(gson, gameJSON, disk, game.getTurn(), minmax, game.getGrid().getWidth() - 1, 2)); //2 en left car 2 profondeurs (IA -> Joueur -> IA)
+        Tree tree = new Tree(createTreePossibRec(gson, gameJSON, disk, game.getTurn(), minmax, game.getGrid().getWidth() - 1, 4)); //4 en left car 4 profondeurs (IA -> Joueur -> IA -> Joueur -> IA)
         return tree;
     }
     /**
@@ -46,6 +46,7 @@ public class Tree {
      * @param gameJSON Traduction du jeu en JSON
      * @param disk Le disque de l'IA
      * @param player Le joueur concerné par l'arbre
+     * @param minmax Si le MinMax est activé
      * @param right Les possibilités sur une profondeur
      * @param left La profondeur
      * @return Le noeud créé
@@ -61,9 +62,7 @@ public class Tree {
             node.computeCustomScore(player);
         }
 
-        if(node.getScore() != 0){
-            return node;
-        } else if (right == 0) {
+        if(right == 0){
             return node;
         } else if (left == 0){
             node.setRight(createTreePossibRec(gson, gameJSON, disk, player, minmax, right - 1, 0));
@@ -77,7 +76,6 @@ public class Tree {
     /**
      * Vérifie s'il y a un score supérieur à 0 et renvoie un booléen
      * @param node Le noeud
-     * @param iter Iterateur 
      * @return Retourne un booléen
      */
     public boolean isBestScoreMax(Node node){

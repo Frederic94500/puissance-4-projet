@@ -1,7 +1,7 @@
 package fr.upec.puissance4;
 
 /**
- * Classe ComputeIA du puissance 4 - Calcul des noeuds
+ * Classe ComputeIA du puissance 4 - Calcul des noeuds par l'IA
  * @author Frédéric TRAN - u21960418 - INFO G2A
  * @author Tony TAVERNIER - u21808537 - INFO G2A
  */
@@ -36,11 +36,11 @@ public class ComputeIA {
      */
     public static void computeMinMaxScore(Node node, int right, int left){ //right: 2 = max, 1 = min
         if(node != null){
-            if(left == 2){
+            if((left % 2) == 0){
                 computeMinMaxScore(node.getLeft(), right, left - 1);
                 computeMaxScore(node);
                 computeMinMaxScore(node.getRight(), right - 1, left);
-            } else if(left == 1) {
+            } else {
                 computeMinScore(node);
                 computeMinMaxScore(node.getRight(), right - 1, left);
             }

@@ -46,17 +46,17 @@ public class Game {
      * @return Retourne la partie créée
      */
     public static Game createGame(Scanner scanner, String fileName) {
-        System.out.println("=====Création de la partie=====");
+        System.out.println(Main.os.getCyan() + "=== Création de la partie ===" + Main.os.getReset());
 
-        System.out.println("=====Création de la grille=====\nTaille de la grille, Largeur?");
+        System.out.println(Main.os.getCyan() + "=== Création de la grille ===" + Main.os.getReset() + "\nTaille de la grille, Largeur?");
         int width = isMinFour(scanner);
         System.out.println("Taille de la grille, Hauteur?");
         int height = isMinFour(scanner);
         Grid grid = new Grid(width, height);
-        System.out.println("=====Grille créée=====");
+        System.out.println(Main.os.getCyan() + "=== Grille créée ===" + Main.os.getReset());
 
-        System.out.println("=====Création des joueurs=====");
-        System.out.println("Nom du joueur 1? (IA/AI/ia/ai pour ordinateur)");
+        System.out.println(Main.os.getCyan() + "=== Création des joueurs ===" + Main.os.getReset());
+        System.out.println(Main.os.getYellow() + "Nom du joueur 1?" + Main.os.getReset() + " (IA/AI/ia/ai pour ordinateur)");
         String name1 = scanner.next();
         AI ai1 = null;
         if (name1.equals("IA") || name1.equals("AI") || name1.equals("ia") || name1.equals("ai")) {
@@ -64,16 +64,17 @@ public class Game {
         }
         Player player1 = new Player(new Coin(Coin.Disk.YELLOW), ai1, name1);
 
-        System.out.println("Nom du joueur 2? (IA/AI/ia/ai pour ordinateur)");
+        System.out.println(Main.os.getRed() + "Nom du joueur 2?" + Main.os.getReset() + " (IA/AI/ia/ai pour ordinateur)");
         String name2 = scanner.next();
         AI ai2 = null;
         if (name2.equals("IA") || name2.equals("AI") || name2.equals("ia") || name2.equals("ai")) {
             ai2 = AI.createAI(scanner);
         }
         Player player2 = new Player(new Coin(Coin.Disk.RED), ai2, name2);
-        System.out.println("=====Joueurs créés=====");
+        System.out.println(Main.os.getCyan() + "=== Joueurs créés ===" + Main.os.getReset());
 
-        System.out.println("=====Partie créée!=====");
+        System.out.println(Main.os.getCyan() + "=== Partie créée! ===" + Main.os.getReset());
+
         if(fileName.equals("")){
             String name = "partie-" + DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now()) + ".json";
             Game game = new Game(name, player1, player2, grid);
@@ -319,7 +320,7 @@ public class Game {
      */
     private int verifyDiagAcc(){
         int winner = 0;
-        for (int i = 0; i < grid.getGrid().get(i).size()-4; i++) { 
+        for (int i = 0; i <= grid.getGrid().get(0).size()-4; i++) { 
             for (int j = 0; j <= grid.getGrid().size()-4; j++) {
                 int red = 0;
                 int yellow = 0;

@@ -93,6 +93,11 @@ public class AI {
         }
     }
 
+    /**
+     * L'IA utilise l'algorithme MinMax
+     * @param game Le jeu
+     * @param disk Le disque du joueur
+     */
     private void minMax(Game game, Coin disk){
         int index;
 
