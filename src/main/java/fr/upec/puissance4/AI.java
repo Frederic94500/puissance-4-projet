@@ -102,9 +102,28 @@ public class AI {
         int index;
 
         Tree tree = Tree.createTreePossib(game, disk, true);
-        ComputeIA.computeMinMaxScore(tree.getRoot(), game.getGrid().getWidth() - 1, 2);
-        index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, 0, 100);
-
+        ComputeIA.computeMinMaxScore(tree.getRoot(), 4);
+        Tree.testprint(tree.getRoot());
+        ArrayList<Integer> indexListZero = tree.listAllZero(tree.getRoot(), game.getGrid().getWidth() - 1, new ArrayList<Integer>());
+        if(indexListZero.size() == game.getGrid().getWidth()){
+            while(true){
+                index = indexListZero.get((int)(Math.random() * (indexListZero.size())));
+                if(!game.isFull(index)){
+                    break;
+                }
+            }
+        } else {
+            index = tree.bestScoreMax(tree.getRoot(), game.getGrid().getWidth() - 1, 0, 0);
+            if(game.isFull(index)){
+                while(true){
+                    index = (int)(Math.random() * game.getGrid().getWidth()-1);
+                    if(!game.isFull(index)){
+                        break;
+                    }
+                }
+            }
+        }
+        
         game.place(index, disk);
         printPlace(game, disk, index, "(score: "+ Integer.toString(tree.searchIndexScore(tree.getRoot(), game.getGrid().getWidth() - 1, index)) + ")");
     }

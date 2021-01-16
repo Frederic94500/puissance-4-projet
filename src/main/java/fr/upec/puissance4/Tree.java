@@ -176,4 +176,12 @@ public class Tree {
         }
         return searchIndexScore(node.getRight(), index - 1, indexTBF);
     }
+
+    public static void testprint(Node node){
+        if(node != null){
+            System.out.print(node.getScore() + " ");
+            testprint(node.getLeft());
+            testprint(node.getRight());
+        }
+    }
 }

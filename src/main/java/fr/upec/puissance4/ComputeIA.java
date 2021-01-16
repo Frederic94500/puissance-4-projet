@@ -34,46 +34,42 @@ public class ComputeIA {
      * @param right Le noeud droite
      * @param left Le noeud gauche
      */
-    public static void computeMinMaxScore(Node node, int right, int left){ //right: 2 = max, 1 = min
-        if(node != null){
-            if((left % 2) == 0){
-                computeMinMaxScore(node.getLeft(), right, left - 1);
-                computeMaxScore(node);
-                computeMinMaxScore(node.getRight(), right - 1, left);
+    public static void computeMinMaxScore(Node node, int depth){ //depth: paire = max, impaire = min (gauche)
+        if(depth == 0 || node != null){
+            if((depth % 2) == 0){
+                computeMinMaxScore(node.getLeft(), depth - 1);
+                node.setScore(computeMaxScore(node, 0));
             } else {
-                computeMinScore(node);
-                computeMinMaxScore(node.getRight(), right - 1, left);
+                computeMinMaxScore(node.getLeft(), depth);
+                node.setScore(computeMinScore(node, Integer.MAX_VALUE));
             }
+            computeMinMaxScore(node.getRight(), depth);
         }
     }
     /**
      * Récupère le noeud ayant la plus faible valeur et stock sur le noeud désigné
      * @param node Le noeud 
      */
-    private static void computeMinScore(Node node) {
-        int min = 100;
-        Node nodeGet = node.getLeft();
-        while(nodeGet != null){
-            if(nodeGet.getScore() < min){
-                min = nodeGet.getScore();
+    private static int computeMinScore(Node node, int min) {
+        if(node != null){
+            if(node.getScore() < min){
+                return computeMinScore(node.getRight(), node.getScore());
             }
-            nodeGet = nodeGet.getRight();
+            return computeMinScore(node.getRight(), min);
         }
-        node.setScore(min);
+        return min;
     }
     /**
      * Récupère le noeud ayant la plus grande valeur et stock sur le noeud désigné
      * @param node Le noeud
      */
-    private static void computeMaxScore(Node node) {
-        int max = 0;
-        Node nodeGet = node.getLeft();
-        while(nodeGet != null){
-            if(nodeGet.getScore() > max){
-                max = nodeGet.getScore();
+    private static int computeMaxScore(Node node, int max) {
+        if(node != null){
+            if(node.getScore() > max){
+                return computeMaxScore(node.getRight(), node.getScore());
             }
-            nodeGet = nodeGet.getRight();
+            return computeMaxScore(node.getRight(), max);
         }
-        node.setScore(max);
+        return max;
     }
 }

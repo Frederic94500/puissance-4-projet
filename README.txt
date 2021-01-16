@@ -90,6 +90,9 @@ Chaque difficultées sont indiqués avec un numéro du commit où la correction 
 
 === DOCUMENTATION ===
 
+IA:
+https://fr.wikipedia.org/wiki/Algorithme_minimax
+
 Gestion des couleurs:
 https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 https://stackoverflow.com/questions/228477/how-do-i-programmatically-determine-operating-system-in-java
@@ -109,6 +112,7 @@ https://www.w3schools.com/java/java_enums.asp
 https://www.w3schools.com/java/java_switch.asp
 https://www.javatpoint.com/java-get-current-date
 https://www.baeldung.com/java-deep-copy
+https://stackoverflow.com/questions/12952024/how-to-implement-infinity-in-java
 
 Maven:
 https://maven.apache.org/guides/getting-started/

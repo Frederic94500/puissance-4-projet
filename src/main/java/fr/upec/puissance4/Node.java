@@ -116,38 +116,48 @@ public class Node {
     public void computeMinMaxScore(Node node, Coin disk){
         score = 0;
         //Verticale
+        int index = 0;
         for(ArrayList<Coin> vert : game.getGrid().getGrid()){
-            int yourDisk = 0;
-            for(Coin coin : vert){
-                if(coin == disk){
-                    yourDisk++;
-                } else if(coin != disk){
-                    if(yourDisk >= 3){
-                        score += yourDisk;
-                        yourDisk = 0;
+            if(!node.getGame().isFull(index)){
+                int yourDisk = 0;
+                for(Coin coin : vert){
+                    if(coin == disk){
+                        yourDisk++;
+                    } else if(coin != disk){
+                        if(yourDisk >= 3){
+                            score += yourDisk;
+                            yourDisk = 0;
+                        }
                     }
                 }
+                if(yourDisk >= 3){
+                    score += yourDisk;
+                }
             }
-            if(yourDisk >= 3){
-                score += yourDisk;
-            }
+            index++;
         }
         //Horizontale
+        index = 0;
         for(int i = 0; i < node.getGame().getGrid().getGrid().get(0).size()-1; i++){
             int yourDisk = 0;
-            for(int j = 0; j < node.getGame().getGrid().getGrid().size(); j++){
-                if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() == disk.getDisk()){
-                    yourDisk++;
-                } else if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() != disk.getDisk()){
-                    if(yourDisk >= 3){
-                        score += yourDisk;
+            if(!node.getGame().isFull(index)){
+                for(int j = 0; j < node.getGame().getGrid().getGrid().size(); j++){
+                    if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() == disk.getDisk()){
+                        yourDisk++;
+                    } else if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() == Coin.Disk.VOID){
+                        if(yourDisk >= 3){
+                            score += yourDisk;
+                            yourDisk = 0;
+                        }
+                    } else {
                         yourDisk = 0;
                     }
                 }
+                if(yourDisk >= 3){
+                    score += yourDisk;
+                }
             }
-            if(yourDisk >= 3){
-                score += yourDisk;
-            }
+            index++;
         }
         //Diagonale ascendante
         for (int i = 0; i <= node.getGame().getGrid().getGrid().get(i).size()-4; i++) { 
