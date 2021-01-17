@@ -103,7 +103,6 @@ public class AI {
 
         Tree tree = Tree.createTreePossib(game, disk, true);
         ComputeIA.computeMinMaxScore(tree.getRoot(), 4);
-        Tree.testprint(tree.getRoot());
         ArrayList<Integer> indexListZero = tree.listAllZero(tree.getRoot(), game.getGrid().getWidth() - 1, new ArrayList<Integer>());
         if(indexListZero.size() == game.getGrid().getWidth()){
             while(true){

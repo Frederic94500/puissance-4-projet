@@ -1,12 +1,12 @@
 === EXECUTION ===
 
-java -jar puissance-4-1.2.jar [fichier de partie]
+java -jar puissance-4-1.3.jar [fichier de partie]
 
 === EXECUTION DEPUIS LE CODE SOURCE + GENERATION DU JAVADOC (Nécessite Maven)===
 
 mvn clean package javadoc:javadoc
 
-java -jar puissance-4-1.2.jar [fichier de partie]
+java -jar puissance-4-1.3.jar [fichier de partie]
 
 Javadoc disponible sur target/site/apidocs/
 
@@ -23,7 +23,7 @@ GitHub = https://github.com/Frederic94500/puissance-4-projet
 
 Joueur vs joueur: codé
 IA naïve: codé
-IA MinMax: partiellement, buggé
+IA MinMax: codé, assez bête
 IA AlphaBeta: non commencé
 
 === METHODOLOGIE ===
@@ -57,7 +57,7 @@ Déroulement:
 
 IA:
 Bogo = Codé
-MinMax = WIP (buggé)
+MinMax = Codé (bête)
 Customisé = Codé
 AlphaBeta = Not started yet
 
@@ -68,7 +68,7 @@ Customisé:
 4 - On calcul: négatif = défavorable, 0 = nul, positif = favorable
 5 - On place en priorité sur le noeud où le score est postif, sinon, si il n'y a rien: alors on place sur la liste de choix 0 (Le négatif est buggé).
 
-MinMax: (Buggé)
+MinMax: (Bête)
 1 - Création de l'arbre des possiblités, 4 de profondeurs
 2 - Calcul de score de chaque noeud
 3 - On remonte le score: adversaire: on prend le score le plus petit, IA: on prend le score le plus grand de l'adversaire
@@ -86,7 +86,8 @@ Chaque difficultées sont indiqués avec un numéro du commit où la correction 
 6 - Remonter le score à travers l'arbre, codé: bc6e8e62c60d3b2dd6e5b5b9853b44effbdc2949
 7 - La copie ne fonctionne pas pour les autres possibilités, copie profonde via gson vu qu'il ne copie pas les références: bc6e8e62c60d3b2dd6e5b5b9853b44effbdc2949
 8 - A un moment, l'IA ne place plus de disque: il se bloque quand l'adversaire va bientôt gagner (score négatif), commenté: non implémenté à cause d'un bug assez étrange: 65421c2e890b821fc34bea89bf90472fa4625eae
-9 - MinMax totalement bloqué sur la colonne 7, non corrigé.
+9 - MinMax totalement bloqué sur la colonne 7, corrigé
+10 - MinMax très bête, non corrigé.
 
 === DOCUMENTATION ===
 

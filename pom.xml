@@ -6,7 +6,7 @@
 
   <groupId>fr.upec.puissance4</groupId>
   <artifactId>puissance-4</artifactId>
-  <version>1.3-SNAPSHOT</version>
+  <version>1.3</version>
 
   <name>Puissance-4-projet</name>
   <url>https://sciences-tech.u-pec.fr/</url>

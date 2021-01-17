@@ -117,20 +117,23 @@ public class Node {
         score = 0;
         //Verticale
         int index = 0;
+        int win = 500;
         for(ArrayList<Coin> vert : game.getGrid().getGrid()){
             if(!node.getGame().isFull(index)){
                 int yourDisk = 0;
                 for(Coin coin : vert){
                     if(coin == disk){
                         yourDisk++;
-                    } else if(coin != disk){
-                        if(yourDisk >= 3){
-                            score += yourDisk;
-                            yourDisk = 0;
-                        }
+                    } else if(coin == Coin.invert(disk)){
+                        yourDisk = 0;
+                        break;
+                    } else {
+                        break;
                     }
                 }
-                if(yourDisk >= 3){
+                if(yourDisk == 4){
+                    score += win;
+                } else if(yourDisk >= 2 && yourDisk != 4){
                     score += yourDisk;
                 }
             }
@@ -144,16 +147,16 @@ public class Node {
                 for(int j = 0; j < node.getGame().getGrid().getGrid().size(); j++){
                     if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() == disk.getDisk()){
                         yourDisk++;
-                    } else if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() == Coin.Disk.VOID){
-                        if(yourDisk >= 3){
-                            score += yourDisk;
-                            yourDisk = 0;
-                        }
-                    } else {
+                    } else if(node.getGame().getGrid().getGrid().get(j).get(i).getDisk() == Coin.invert(disk).getDisk()){
                         yourDisk = 0;
+                        break;
+                    } else {
+                        break;
                     }
                 }
-                if(yourDisk >= 3){
+                if(yourDisk == 4){
+                    score += win;
+                } else if(yourDisk >= 2 && yourDisk != 4){
                     score += yourDisk;
                 }
             }
@@ -166,14 +169,16 @@ public class Node {
                 for (int k = 0; k < 4; k++) {
                     if(node.getGame().getGrid().getGrid().get(j+k).get(i+k).getDisk() == disk.getDisk()){
                         yourDisk++;
-                    } else if(node.getGame().getGrid().getGrid().get(j+k).get(i+k).getDisk() != disk.getDisk()){
-                        if(yourDisk >= 3){
-                            score += yourDisk;
-                            yourDisk = 0;
-                        }
+                    } else if(node.getGame().getGrid().getGrid().get(j+k).get(i+k).getDisk() != Coin.invert(disk).getDisk()){
+                        yourDisk = 0;
+                        break;
+                    } else {
+                        break;
                     }
                 }
-                if(yourDisk >= 3){
+                if(yourDisk == 4){
+                    score += win;
+                } else if(yourDisk >= 2 && yourDisk != 4){
                     score += yourDisk;
                 }
             }
@@ -186,14 +191,16 @@ public class Node {
                     if(node.getGame().getGrid().getGrid().get(j+k).get(i-k).getDisk() == disk.getDisk()){
                         yourDisk++;
                     }
-                    if(node.getGame().getGrid().getGrid().get(j+k).get(i-k).getDisk() != disk.getDisk()){
-                        if(yourDisk >= 3){
-                            score += yourDisk;
-                            yourDisk = 0;
-                        }
+                    if(node.getGame().getGrid().getGrid().get(j+k).get(i-k).getDisk() != Coin.invert(disk).getDisk()){
+                        yourDisk = 0;
+                        break;
+                    } else {
+                        break;
                     }
                 }
-                if(yourDisk >= 3){
+                if(yourDisk == 4){
+                    score += win;
+                } else if(yourDisk >= 2 && yourDisk != 4){
                     score += yourDisk;
                 }
             }

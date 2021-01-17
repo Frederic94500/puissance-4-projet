@@ -168,20 +168,12 @@ public class Tree {
      * @param node Le noeud
      * @param index L'index
      * @param indexTBF L'index a trouver
-     * @return Retounre le score
+     * @return Retourne le score
      */
     public int searchIndexScore(Node node, int index, int indexTBF){ //TBF = To Be Found
         if(index == indexTBF){
             return node.getScore();
         }
         return searchIndexScore(node.getRight(), index - 1, indexTBF);
-    }
-
-    public static void testprint(Node node){
-        if(node != null){
-            System.out.print(node.getScore() + " ");
-            testprint(node.getLeft());
-            testprint(node.getRight());
-        }
     }
 }

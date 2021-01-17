@@ -31,8 +31,7 @@ public class ComputeIA {
     /**
      * Récupère les scores des noeuds sous-jacents puis enregistre dans le noeud du profondeur 0
      * @param node Le noeud
-     * @param right Le noeud droite
-     * @param left Le noeud gauche
+     * @param depth La profondeur
      */
     public static void computeMinMaxScore(Node node, int depth){ //depth: paire = max, impaire = min (gauche)
         if(depth == 0 || node != null){
@@ -49,6 +48,8 @@ public class ComputeIA {
     /**
      * Récupère le noeud ayant la plus faible valeur et stock sur le noeud désigné
      * @param node Le noeud 
+     * @param min Le score minimum
+     * @return Retourne le score min
      */
     private static int computeMinScore(Node node, int min) {
         if(node != null){
@@ -62,6 +63,8 @@ public class ComputeIA {
     /**
      * Récupère le noeud ayant la plus grande valeur et stock sur le noeud désigné
      * @param node Le noeud
+     * @param max Le score maximum
+     * @return Retourne le score max
      */
     private static int computeMaxScore(Node node, int max) {
         if(node != null){
